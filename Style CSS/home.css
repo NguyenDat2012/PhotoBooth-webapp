@@ -1,0 +1,146 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden; /* Loại bỏ scroll nếu không muốn */
+    font-family: Arial, sans-serif;
+    
+}
+
+.background {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+.background > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 1;
+}
+
+/* Chỗ chứa title và nhân vật */
+.content {
+    position: relative;
+    z-index: 2;
+    height: 100vh;
+    width: 100vw;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    padding-top: 140px; /* Tạo khoảng cách trên */
+}
+
+.title {
+    width: 25%;
+    max-width: 40vw;
+    height: auto;
+    margin-bottom: 40px;
+}
+.character-container {
+    position: relative;
+    display: inline-block;
+}
+
+.character {
+    max-height: 60vh;
+    height: auto;
+    max-width: 30vw;
+    display: block;
+}
+#select-button {
+    position: absolute;
+    bottom: 3%;
+    left: 54%;
+    transform: translateX(5%);
+    background: linear-gradient(145deg, #ffeead, #f0c05a); /* nền vàng gradient mềm mại */
+    border: 5px solid #8b5c2c; /* viền nâu đậm */
+    border-radius: 20px 20px 20px 20px / 30px 30px 30px 30px; /* bo góc cong kiểu đặc biệt */
+    box-shadow:
+        0 0 30px 15px rgba(231, 202, 116, 0.6), /* bóng xung quanh màu nâu dịu */
+        inset 0 2px 6px #fff6c3, /* bóng trong tạo sáng */
+        inset 0 -2px 6px #c79d32; /* bóng trong tạo chiều sâu */
+    color: #9f1c1c; /* chữ màu đỏ gạch */
+    font-family: 'Brush Script MT', cursive, serif; /* font mềm mại kiểu viết tay */
+    font-size: 2.2rem;
+    padding: 8px 36px;
+    cursor: pointer;
+    transition: filter 0.3s ease, box-shadow 0.3s ease;
+    user-select: none;
+    outline: none;
+}
+
+#select-button:hover {
+    filter: brightness(1.1);
+    box-shadow:
+        0 0 40px 20px rgba(243, 138, 39, 0.8),
+        inset 0 2px 8px #fff9d2,
+        inset 0 -2px 8px #c6aa5a;
+}
+#takephoto-button{
+    position: absolute;
+    bottom: 4%;
+    left: 35%;
+    transform: translateX(5%);
+    background: linear-gradient(145deg, #ffeead, #f0c05a); /* nền vàng gradient mềm mại */
+    border: 5px solid #8b5c2c; /* viền nâu đậm */
+    border-radius: 20px 20px 20px 20px / 30px 30px 30px 30px; /* bo góc cong kiểu đặc biệt */
+    box-shadow:
+        0 0 30px 15px rgba(231, 202, 116, 0.6), /* bóng xung quanh màu nâu dịu */
+        inset 0 2px 6px #fff6c3, /* bóng trong tạo sáng */
+        inset 0 -2px 6px #c79d32; /* bóng trong tạo chiều sâu */
+    color: #9f1c1c; /* chữ màu đỏ gạch */
+    font-family: 'Brush Script MT', cursive, serif; /* font mềm mại kiểu viết tay */
+    font-size: 2.2rem;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: filter 0.3s ease, box-shadow 0.3s ease;
+    user-select: none;
+    outline: none;
+}
+#takephoto-button:hover {
+    filter: brightness(1.1);
+    box-shadow:
+        0 0 40px 20px rgba(243, 138, 39, 0.8),
+        inset 0 2px 8px #fff9d2,
+        inset 0 -2px 8px #c6aa5a;
+}
+#uploadphoto-button{
+    position: absolute;
+    bottom: 4%;
+    right: 7%;
+    transform: translateX(5%);
+    background: linear-gradient(145deg, #ffeead, #f0c05a); /* nền vàng gradient mềm mại */
+    border: 5px solid #8b5c2c; /* viền nâu đậm */
+    border-radius: 20px 20px 20px 20px / 30px 30px 30px 30px; /* bo góc cong kiểu đặc biệt */
+    box-shadow:
+        0 0 30px 15px rgba(231, 202, 116, 0.6), /* bóng xung quanh màu nâu dịu */
+        inset 0 2px 6px #fff6c3, /* bóng trong tạo sáng */
+        inset 0 -2px 6px #c79d32; /* bóng trong tạo chiều sâu */
+    color: #9f1c1c; /* chữ màu đỏ gạch */
+    font-family: 'Brush Script MT', cursive, serif; /* font mềm mại kiểu viết tay */
+    font-size: 2.2rem;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: filter 0.3s ease, box-shadow 0.3s ease;
+    user-select: none;
+    outline: none;
+}
+#uploadphoto-button:hover {
+    filter: brightness(1.1);
+    box-shadow:
+        0 0 40px 20px rgba(243, 138, 39, 0.8),
+        inset 0 2px 8px #fff9d2,
+        inset 0 -2px 8px #c6aa5a;
+}

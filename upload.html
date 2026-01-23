@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vietnamese Lunar New Year - Photo Booth</title>
+    <link rel="icon" href="image-home/title-logo.png"/>
+    <link rel="stylesheet" href="Style CSS/upload.css" />
+</head>
+<body>
+    <div class="background">
+        <img src="image-home/home.png" alt="Background Tết" />
+        
+        <div class="content">
+            <div id="camera-section">
+                <div class="camera-wrapper">                   
+                    <img id="overlayFrame" class="overlay-frame">
+                    <canvas id="photoCanvas"></canvas>
+                </div> 
+                <input type="file" id="fileInput" accept="image/*" class="hidden-input">
+                <div class="button-group">
+                    <button id="uploadButton">Upload Photo</button>
+                    
+                </div>
+            </div>
+
+            <div id="edit-section" style="display: none;">
+                <div class="icon-sticker-menu">
+                    <img src="Stickerbtn/1.png" class="sticker-item" draggable="true">
+                    <img src="Stickerbtn/2.png" class="sticker-item" draggable="true">
+                    <img src="Stickerbtn/3.png" class="sticker-item" draggable="true">
+                    <img src="Stickerbtn/4.png" class="sticker-item" draggable="true">
+                    <img src="Stickerbtn/5.png" class="sticker-item" draggable="true">
+                    <img src="Stickerbtn/6.png" class="sticker-item" draggable="true">
+                    <img src="Stickerbtn/7.png" class="sticker-item" draggable="true">
+                    <img src="Stickerbtn/8.png" class="sticker-item" draggable="true">
+                    <img src="Stickerbtn/9.png" class="sticker-item" draggable="true">
+                    <img src="Stickerbtn/10.png" class="sticker-item" draggable="true">
+                    <img src="Stickerbtn/11.png" class="sticker-item" draggable="true">
+                    <img src="Stickerbtn/12.png" class="sticker-item" draggable="true">
+                    <img src="Stickerbtn/13.png" class="sticker-item" draggable="true">
+                    <img src="Stickerbtn/14.png" class="sticker-item" draggable="true">
+                    <img src="Stickerbtn/15.png" class="sticker-item" draggable="true">
+                    <img src="Stickerbtn/16.png" class="sticker-item" draggable="true">
+                    <img src="Stickerbtn/17.png" class="sticker-item" draggable="true">
+                    <img src="Stickerbtn/18.png" class="sticker-item" draggable="true">
+                </div>
+                <div class="button-group">
+                    <button id="printBtn">Print Photo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="Javascript/upload.js"></script>
+    <script src="Javascript/DragandDrop.js"></script>
+</body>
+</html>

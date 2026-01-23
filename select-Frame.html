@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vietnamese Lunar New Year</title>
+    <link rel="icon" href="image-home/title-logo.png"/>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"> 
+    <link rel="stylesheet" href="Style CSS/select-Frame.css" />
+</head>
+<body>
+    
+    <div class="background">
+        
+        <img src="image-home/home.png" alt="Background Tết" />
+        <div class="content">
+            <!-- Thêm thanh lướt chọn khung (slider) dưới nhân vật -->
+            <h2 class="select-title">Select frame</h2>
+            <div class="frame-slider-container">
+                <div class="filter-buttons">
+                    
+                    <button class="filter-btn" data-filter="square">Khung vuông</button>
+                    <button class="filter-btn" data-filter="portrait">Khung dọc</button>
+                </div>
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide" data-type="portrait">
+                            <img src="frame/frame1.png" alt="Frame 1" class="frame">
+                        </div>
+                        <div class="swiper-slide" data-type="portrait">  
+                            <img src="frame/frame2.png" alt="Frame 2" class="frame">
+                        </div>
+                        <div class="swiper-slide" data-type="portrait">
+                            <img src="frame/frame3.png" alt="Frame 3" class="frame">
+                        </div>
+                        <div class="swiper-slide" data-type="portrait">
+                            <img src="frame/frame4.png" alt="Frame 4" class="frame">
+                        </div>
+                        <div class="swiper-slide" data-type="portrait">
+                            <img src="frame/frame5.png" alt="Frame 5" class="frame">
+                        </div>
+                        <!-- Thêm nhiều khung nếu cần -->
+                    </div>
+                <div class="swiper-pagination"></div>
+                    <button class="swiper-button-next"></button>
+                    <button class="swiper-button-prev"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script> 
+    <script src="Javascript/select-Frame.js"></script>
+</body>
+</html>
