@@ -6,7 +6,7 @@ body { height: 100%; width: 100%; overflow: hidden; font-family: Arial, sans-ser
 
 .content { 
     position: relative; z-index: 2; height: 100vh; width: 100vw;
-    display: flex; flex-direction: column; align-items: center; justify-content: start;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;overflow: hidden;
 }
 
 /* Khung Canvas dùng chung */
@@ -38,9 +38,7 @@ body { height: 100%; width: 100%; overflow: hidden; font-family: Arial, sans-ser
     position: absolute; top: 0; left: 0; width: 295px; height: 900px;
     z-index: 5; pointer-events: none;
 }
-
-/* Nút bấm dùng chung style */
-#captureButton, #printBtn {
+#captureButton{
     position: absolute; top: 88%; left: 48%; z-index: 15;
     transform: translateX(5%);
     background: linear-gradient(145deg, #ffeead, #f0c05a);
@@ -48,16 +46,58 @@ body { height: 100%; width: 100%; overflow: hidden; font-family: Arial, sans-ser
     color: #9f1c1c; font-family: 'Brush Script MT', cursive;
     font-size: 2.2rem; padding: 8px 36px; cursor: pointer;
 }
-
-/* Menu Sticker */
-.icon-sticker-menu {
-    position: absolute; top: 30px; left: 50%; transform: translateX(-50%);
-    display: flex; gap: 12px; padding: 10px;
-    width: auto; max-width: 90vw;
-    overflow-x: auto; white-space: nowrap; z-index: 20;
+/* Nút bấm dùng chung style */
+#printBtn {
+    position: absolute; top: 88%; left: 42%; z-index: 15;
+    transform: translateX(5%);
+    background: linear-gradient(145deg, #ffeead, #f0c05a);
+    border: 5px solid #8b5c2c; border-radius: 20px;
+    color: #9f1c1c; font-family: 'Brush Script MT', cursive;
+    font-size: 1.8rem; padding: 8px 15px; cursor: pointer;
 }
-.sticker-item { width: 60px; height: 60px; transition: 0.2s; cursor: pointer; }
-.sticker-item:hover { transform: scale(1.2); }
+#ResetBtn {
+    position: absolute; top: 68%; left: 57%; z-index: 15;
+    transform: translateX(5%);
+    background: linear-gradient(145deg, #ffeead, #f0c05a);
+    border: 5px solid #8b5c2c; border-radius: 20px;
+    color: #9f1c1c; font-family: 'Brush Script MT', cursive;
+    font-size: 1.8rem; padding: 8px 20px; cursor: pointer;
+}
+
+/* Menu Sticker - Chia làm 2 dòng */
+.icon-sticker-menu {
+    position: absolute; 
+    top: 30%; 
+    left: 60%; 
+    transform: translateX(-50%);
+    
+    /* Sử dụng Grid để chia hàng */
+    display: grid;
+    grid-template-rows: repeat(6, 1fr); /* Tạo 2 hàng bằng nhau */
+    grid-auto-flow: column;             /* Ép các item lấp đầy theo cột để tạo dòng */
+    grid-gap: 10px;                     /* Khoảng cách giữa các sticker */
+    
+    padding: 5px;
+    width: auto; 
+    max-width: 95vw;
+    overflow-x: auto;                   /* Cho phép cuộn ngang nếu quá nhiều */
+    z-index: 20;
+    
+    background: rgba(255, 255, 255, 0); /* Thêm nền mờ nhẹ để dễ nhìn sticker */
+    border-radius: 15px;
+}
+
+.sticker-item { 
+    width: 55px;   /* Giảm nhẹ kích thước để fit 2 dòng đẹp hơn */
+    height: 55px; 
+    transition: 0.2s; 
+    cursor: pointer; 
+    object-fit: contain;
+}
+
+.sticker-item:hover { 
+    transform: scale(1.15); 
+}
 
 /* Scrollbar cho menu sticker */
 .icon-sticker-menu::-webkit-scrollbar { height: 6px; }
@@ -85,6 +125,6 @@ body { height: 100%; width: 100%; overflow: hidden; font-family: Arial, sans-ser
     max-height: 80vh; /* Giới hạn chiều cao để không bị tràn màn hình */
     width: auto;
     top: 7%;
-    left: 45%;
+    left: 40%;
 }
 

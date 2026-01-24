@@ -1,4 +1,5 @@
 const printButton = document.getElementById('printBtn');
+const ResetBtn = document.getElementById('ResetBtn');
 function printFinalImage() {
     console.log("Đang chuẩn bị ảnh để tải về...");
     
@@ -15,7 +16,11 @@ function printFinalImage() {
     document.body.removeChild(link);
 }
 printButton.addEventListener('click', printFinalImage);
-// Khai báo biến toàn cục (dùng var để có thể truy cập từ file khác mà không bị lỗi khai báo lại)
+ResetBtn.addEventListener('click',() => {
+    stickersInCanvas.length = 0;
+    renderCanvas();
+    console.log("Đã xóa toàn bộ sticker.");
+});
 var stickersInCanvas = [];
 var selectedSticker = null;
 var isDragging = false;
