@@ -1,85 +1,82 @@
+/* ================= RESET ================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* ================= BODY ================= */
 body {
-    height: 100%;
     width: 100%;
-    overflow: hidden; /* Loại bỏ scroll nếu không muốn */
+    height: 100%;
     font-family: Arial, sans-serif;
-    
+    overflow: hidden;
 }
 
+/* ================= BACKGROUND ================= */
 .background {
     position: relative;
-    height: 100vh;
     width: 100vw;
+    height: 100svh;
     overflow: hidden;
 }
 
 .background > img {
     position: absolute;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100vw;
+    inset: 0;
+    width: 100%;
+    height: 100%;
     z-index: 1;
-    
-    
 }
 
-/* Chỗ chứa title và nhân vật */
+/* ================= CONTENT ================= */
 .content {
     position: relative;
     z-index: 2;
-    height: 100vh;
-    width: 100vw;
+    width: 100%;
+    height: 100%;
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: start;
-    padding-top: 140px; /* Tạo khoảng cách trên */
 }
+
+/* ================= TITLE ================= */
 .select-title {
-    position: absolute;
-    top: 22%;                         /* chỉnh vị trí theo ý */
-    left: 50%;
-    transform: translateX(-50%);
-    
-    font-size: 60px;                  /* chữ to bự */
+    margin-top: 14vh;
+
+    font-size: clamp(36px, 5vw, 60px);
     font-weight: 800;
-    color: #b30000;                   /* đỏ Tết */
+    color: #b30000;
     text-shadow: 0 4px 10px rgba(0,0,0,0.25);
 
     letter-spacing: 4px;
     text-transform: uppercase;
-
-    font-family: 'SVN-Avo', sans-serif; /* nếu có font Tết đẹp */
-    pointer-events: none; 
+    pointer-events: none;
 }
-/* Giữ nguyên flex của wrapper */
+
+/* ================= SLIDER ================= */
+.frame-slider-container {
+    width: 65%;
+    display: flex;
+    justify-content: center;
+}
+
+
+/* Tổng thể swiper */
+.swiper {
+    width: 100%;
+    max-width: 900px;
+    height: 500px;
+
+    margin-top: 4vh;
+    padding: 10px 0;
+}
+
+/* Wrapper */
 .swiper .swiper-wrapper {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    pointer-events: auto;
-}
-
-/* Vị trí tổng thể của slider */
-.swiper {
-    width: 95%;
-    max-width: 1400px;
-    height: 500px;
-    background: transparent;
-    border-radius: 12px;
-    padding: 20px 0;
-    position: absolute;
-    top: 35%;
-    left: 50%;
-    transform: translateX(-50%);
 }
 
 /* Slide */
@@ -87,47 +84,48 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: transparent;
-    border-radius: 12px;
-    transition: transform 0.3s ease;
-    padding: 10px;
+    margin: 0 14px;
+    transition: transform 0.25s ease;
 }
 
-/* Hover phóng to */
 .swiper-slide:hover {
-    transform: scale(1.10);
+    transform: scale(1.05);
 }
 
-/* Ảnh bên trong */
+
+/* Frame image */
 .frame {
-    max-width: 550px;
-    max-height: 450px;
-    width: auto;
+    width: clamp(120px, 7vw, 220px);
     height: auto;
     object-fit: contain;
-    border-radius: 12px;
+    border-radius: 14px;
     cursor: pointer;
 }
 
-/* NÚT NEXT & PREV */
+/* ================= BUTTON NEXT / PREV ================= */
 .swiper-button-next,
 .swiper-button-prev {
     color: #b30000;
-    font-weight: bold;
-    background: rgba(203, 174, 132, 0.9);
-    width: 45px;
-    height: 45px;
+    background: rgba(203, 174, 132, 0.95);
+
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
-    box-shadow: 0 0 8px rgba(0,0,0,0.2);
+
+    box-shadow: 0 0 8px rgba(0,0,0,0.25);
 }
 
-/* Chỉnh lại vị trí nút 2 bên */
 .swiper-button-next {
-    right: -50px;   /* nằm bên phải */
-    left: auto;
+    right: 10px;
 }
 
 .swiper-button-prev {
-    left: -50px;    /* nằm bên trái */
-    right: auto;
+    left: 10px;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 550px) {
+    .swiper-slide{
+        margin: 0 80px;
+    }
 }

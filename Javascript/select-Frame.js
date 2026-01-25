@@ -5,15 +5,32 @@ const urlParams = new URLSearchParams(window.location.search);
 const currentMode = urlParams.get('mode');
 var swiper = new Swiper(".mySwiper", {
     slidesPerView: 3,
-    slidesPerGroup: 1,  
-    spaceBetween: -200,  
+    slidesPerGroup: 1,
+    spaceBetween: 12,     // khoảng cách thật
+    centeredSlides: true,
     watchOverflow: true,
-    centeredSlides: false, 
+
     navigation: {
         nextEl: btnnext,
         prevEl: btnprev,
     },
+
+    breakpoints: {
+        0: {
+            slidesPerView: 1.4,
+            spaceBetween: 16,
+        },
+        550: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+        },
+        768: {
+            slidesPerView: 3,
+            spaceBetween: 24,
+        }
+    }
 });
+
 
 // Lưu trữ tất cả slide ban đầu (bao gồm cả square và portrait)
 const frame_warehouse = Array.from(document.querySelectorAll('.swiper-slide'));

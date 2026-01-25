@@ -4,25 +4,46 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Vietnamese Lunar New Year</title>
-    <link rel="icon" href="image-home/title-logo.png"/>
-    <link rel="stylesheet" href="StyleCSS/home.css" />
+
+    <link rel="icon" href="image-home/title-logo.png">
+    <link rel="stylesheet" href="StyleCSS/home.css">
 </head>
 <body>
-    <div class="background">
-        <img src="image-home/home.png" alt="Background Tết" />
-        <div class="content">
-            <img src="image-home/logo.png" alt="Vietnamese Lunar New Year Title" class="title" />
+
+    <main class="background">
+        <!-- Background image -->
+        <img src="image-home/home.png" alt="Background Tết" class="bg-img">
+
+        <!-- Content -->
+        <section class="content">
+            <!-- Title -->
+            <img 
+                src="image-home/logo.png" 
+                alt="Vietnamese Lunar New Year" 
+                class="title"
+            >
+
+            <!-- Character + buttons -->
             <div class="character-container">
-                <img src="image-home/photobooth.png" alt="Main Character" class="character" />
-                <button id="select-button">Select</button>
-                <div id='menuBtn' style="display: none;">
-                    <button id= "takephoto-button">Takes photo</button>
-                    <button id= "uploadphoto-button">Upload photo</button>
+                <img 
+                    src="image-home/photobooth.png" 
+                    alt="Photobooth" 
+                    class="character"
+                >
+
+                <!-- Button group -->
+                <div class="button-group">
+                    <button id="select-button">Select</button>
+
+                    <div id="menuBtn" class="menu" style="display: none;">
+                        <button id="takephoto-button">Take photo</button>
+                        <button id="uploadphoto-button">Upload photo</button>
+                    </div>
                 </div>
             </div>
-        </div>
-        
-    </div>
-    <script src="Javascript/home.js"> </script>
+        </section>
+    </main>
+
+    <script src="Javascript/home.js"></script>
 </body>
 </html>
