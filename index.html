@@ -2,42 +2,27 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Vietnamese Lunar New Year</title>
-
     <link rel="icon" href="image-home/title-logo.png">
     <link rel="stylesheet" href="StyleCSS/home.css">
 </head>
 <body>
 
     <main class="background">
-        <!-- Background image -->
         <img src="image-home/home.png" alt="Background Tết" class="bg-img">
 
-        <!-- Content -->
         <section class="content">
-            <!-- Title -->
-            <img 
-                src="image-home/logo.png" 
-                alt="Vietnamese Lunar New Year" 
-                class="title"
-            >
+            <img src="image-home/logo.png" alt="Vietnamese Lunar New Year" class="title-img">
 
-            <!-- Character + buttons -->
             <div class="character-container">
-                <img 
-                    src="image-home/photobooth.png" 
-                    alt="Photobooth" 
-                    class="character"
-                >
+                <img src="image-home/photobooth.png" alt="Photobooth" class="character">
 
-                <!-- Button group -->
-                <div class="button-group">
-                    <button id="select-button">Select</button>
-
-                    <div id="menuBtn" class="menu" style="display: none;">
-                        <button id="takephoto-button">Take photo</button>
-                        <button id="uploadphoto-button">Upload photo</button>
+                <div class="button-container">
+                    <button id="select-button" class="btn-main">Select</button>
+                    <div id="menuBtn" class="menu-group" style="display: none;">
+                        <button id="takephoto-button" class="btn-sub">Take Photo</button>
+                        <button id="uploadphoto-button" class="btn-sub">Upload Photo</button>
                     </div>
                 </div>
             </div>

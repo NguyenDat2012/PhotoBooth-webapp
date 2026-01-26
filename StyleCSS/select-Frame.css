@@ -55,77 +55,65 @@ body {
     pointer-events: none;
 }
 
-/* ================= SLIDER ================= */
+/* ================= SLIDER CONTAINER ================= */
 .frame-slider-container {
-    width: 65%;
-    display: flex;
-    justify-content: center;
+    position: relative; /* Để làm gốc cho 2 nút mũi tên */
+    width: 90%;
+    max-width: 900px;  /* Giới hạn độ rộng tối đa */
+    margin: 2vh auto 0; /* Căn giữa cụm slider */
+    padding: 0 60px;    /* Chừa chỗ cho 2 nút mũi tên không đè lên ảnh */
 }
-
 
 /* Tổng thể swiper */
 .swiper {
     width: 100%;
-    max-width: 900px;
-    height: 500px;
-
-    margin-top: 4vh;
-    padding: 10px 0;
-}
-
-/* Wrapper */
-.swiper .swiper-wrapper {
+    height: 70dvh !important;
+    
     display: flex;
     align-items: center;
 }
 
 /* Slide */
 .swiper-slide {
+    height: 100% !important;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 14px;
-    transition: transform 0.25s ease;
+    transition: transform 0.3s ease;
 }
-
-.swiper-slide:hover {
-    transform: scale(1.05);
-}
-
 
 /* Frame image */
 .frame {
-    width: clamp(120px, 7vw, 220px);
-    height: auto;
+    /* Thay đổi cách tính width để phù hợp với tỉ lệ khung 295x900 của bạn */
+    width: auto;
+    max-width: 100%;
+    height: 70vh !important; /* Ưu tiên chiều cao để giữ tỉ lệ khung dọc */
+    max-height: 500px; 
     object-fit: contain;
-    border-radius: 14px;
+    border-radius: 10px;
     cursor: pointer;
+    
 }
 
-/* ================= BUTTON NEXT / PREV ================= */
+/* ================= NÚT MŨI TÊN ================= */
 .swiper-button-next,
 .swiper-button-prev {
-    color: #b30000;
-    background: rgba(203, 174, 132, 0.95);
-
-    width: 48px;
-    height: 48px;
+    color: #b30000 !important;
+    background: rgba(255, 255, 255, 0.8);
+    width: 50px !important;
+    height: 50px !important;
     border-radius: 50%;
-
-    box-shadow: 0 0 8px rgba(0,0,0,0.25);
+    top: 50% !important;
+    transform: translateY(-50%);
 }
 
-.swiper-button-next {
-    right: 10px;
-}
-
-.swiper-button-prev {
-    left: 10px;
-}
-
-/* ================= RESPONSIVE ================= */
+/* Cho mũi tên nhỏ lại trên điện thoại */
 @media (max-width: 550px) {
-    .swiper-slide{
-        margin: 0 80px;
+    .frame-slider-container {
+        padding: 0 40px; /* Thu hẹp lề */
+    }
+    .swiper-button-next, .swiper-button-prev {
+        width: 35px !important;
+        height: 35px !important;
     }
 }

@@ -6,8 +6,8 @@ const currentMode = urlParams.get('mode');
 var swiper = new Swiper(".mySwiper", {
     slidesPerView: 3,
     slidesPerGroup: 1,
-    spaceBetween: 12,     // khoảng cách thật
-    centeredSlides: true,
+    spaceBetween: 24,     // khoảng cách thật
+    centeredSlides: false,
     watchOverflow: true,
 
     navigation: {
@@ -17,15 +17,15 @@ var swiper = new Swiper(".mySwiper", {
 
     breakpoints: {
         0: {
-            slidesPerView: 1.4,
+            slidesPerView: 1,
             spaceBetween: 16,
         },
-        550: {
-            slidesPerView: 2,
-            spaceBetween: 20,
+        450: {
+            slidesPerView: 1,
+            spaceBetween: 16,
         },
         768: {
-            slidesPerView: 3,
+            slidesPerView: 2,
             spaceBetween: 24,
         }
     }

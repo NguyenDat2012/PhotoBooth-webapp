@@ -9,7 +9,7 @@
             "type": "msedge",
             "request": "launch",
             "name": "Open index.html",
-            "file": "d:\\My project\\photobooth\\camera.html"
+            "file": "d:\\My project\\photobooth\\index.html"
         }
     ]
 }
