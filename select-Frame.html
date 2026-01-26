@@ -16,10 +16,19 @@
         <div class="content">
             <!-- Thêm thanh lướt chọn khung (slider) dưới nhân vật -->
             <h2 class="select-title">Select frame</h2>
-            <div class="filter-buttons">
-                    <button class="filter-btn" data-filter="square">Khung vuông</button>
-                    <button class="filter-btn" data-filter="portrait">Khung dọc</button>
-                </div>
+            <div class="menu-group">
+    <div class="filter-buttons">
+        <div class="filter-btn" data-filter="square">
+            <span>Khung vuông</span>
+        </div>
+    </div>
+
+    <div class="filter-buttons">
+        <div class="filter-btn" data-filter="portrait">
+            <span>Khung dọc</span>
+        </div>
+    </div>
+</div>
             <div class="frame-slider-container">
                 <div class="swiper mySwiper">
                     <div class="swiper-wrapper">
@@ -40,9 +49,19 @@
                         </div>
                         <!-- Thêm nhiều khung nếu cần -->
                     </div>
-                <div class="swiper-pagination"></div>
-                    <button class="swiper-button-next"></button>
-                    <button class="swiper-button-prev"></button>
+
+                    <button class="swiper-button-next">
+                        <svg viewBox="0 0 320 512" class="svg">
+                            <path d="M52.5 440.6c-9.5 7.9-22.8 9.7-34.1 4.4S0 428.4 0 416V96C0 83.6 7.2 72.3 18.4 67s24.5-3.6 34.1 4.4l192 160L256 241V96c0-17.7 14.3-32 32-32s32 14.3 32 32V416c0 17.7-14.3 32-32 32s-32-14.3-32-32V271l-11.5 9.6-192 160z">
+
+                            </path>
+                        </svg>
+                    </button>
+                    <button class="swiper-button-prev"><svg viewBox="0 0 320 512" class="svg">
+                        <path d="M291.5 71.4c9.5-7.9 22.8-9.7 34.1-4.4s18.4 16.6 18.4 29v320c0 12.4-7.2 23.7-18.4 29s-24.5 3.6-34.1-4.4l-192-160L88 271v145c0 17.7-14.3 32-32 32s-32-14.3-32-32V96c0-17.7 14.3-32 32-32s32 14.3 32 32v145l11.5-9.6 192-160z">
+                            
+                        </path>
+                    </svg></button>
                 </div>
             </div>
         </div>

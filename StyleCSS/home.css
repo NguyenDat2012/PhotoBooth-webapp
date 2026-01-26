@@ -115,17 +115,6 @@ button:hover {
 button:active {
     transform: scale(0.95);
 }
-
-/* ĐIỀU CHỈNH CHO MOBILE */
-@media (max-width: 500px) {
-    .title-img { width: 70%; }
-    .character { max-height: 50vh; }
-    .menu-group { gap: 10px; }
-    button { padding: 8px 15px; border-width: 3px; }
-    .button-container {
-        bottom: 13%;
-    }
-}
 @media (max-width: 1280px){
     .title-img { width: 70%; }
     .character { max-height: 50vh; }
@@ -133,6 +122,16 @@ button:active {
     button { 
         padding: 3px 10px; 
         border-width: 3px; 
-        font-size: clamp(1rem, 2vw, 1.5rem);
+        font-size: clamp(1rem, 1vw, 1.5rem);
+    }
+}
+@media (max-width: 500px) {
+    .title-img { width: 70%; }
+    .character { max-height: 50vh; }
+    .menu-group { gap: 10px; }
+    button { padding: 5px 5px; border-width: 3px; font-size: 1rem;
+     }
+    .button-container {
+        bottom: 13%;
     }
 }
