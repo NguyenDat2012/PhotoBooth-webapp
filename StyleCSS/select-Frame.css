@@ -188,14 +188,7 @@ body {
     transition-duration: 0.3s;
 }
 
-.swiper-button-next:hover .svg,
-.swiper-button-prev:hover .svg {
-    right: 43% !important;
-    margin: 0;
-    padding: 0;
-    border: none;
-    transition-duration: 0.3s;
-}
+
 
 .swiper-button-next:active,
 .swiper-button-prev:active {

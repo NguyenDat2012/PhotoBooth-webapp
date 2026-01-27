@@ -12,8 +12,16 @@ const datatype = urlParams.get('data_type');
 
 let total = 0;
 const totalFrames = 4;
-const CANVAS_WIDTH = 295;
-const CANVAS_HEIGHT = 900;
+let CANVAS_WIDTH;
+let CANVAS_HEIGHT;
+
+if(datatype ==  'portrait'){
+    CANVAS_WIDTH = 295;
+    CANVAS_HEIGHT = 900;
+}else{
+    CANVAS_WIDTH = 295;
+    CANVAS_HEIGHT = 900;
+}
 
 
 async function setupCamera() {
@@ -108,10 +116,8 @@ function finalizeStrip() {
     document.getElementById('camera-section').style.display = 'none';
     const editSection = document.getElementById('edit-section');
     editSection.style.display = 'flex';
-
-    // 4. DI CHUYỂN CANVAS: Đưa canvas từ camera-wrapper vào edit-section
-    // Điều này đảm bảo ảnh không bị mất khi section cũ bị ẩn
-    editSection.appendChild(canvas);
+    const editContainer = document.getElementById('editcanvas');
+    editContainer.appendChild(canvas);
 
     console.log("Đã hoàn tất dải ảnh!");
 
