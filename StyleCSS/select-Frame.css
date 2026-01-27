@@ -157,7 +157,7 @@ body {
     height: 40px !important;
     border: none;
     padding: 0px 15px;
-    background: linear-gradient(to right,#e7d89d, #ffd941);
+    background: rgb(255, 255, 255,0);
     color: rgb(240, 88, 37);
     font-size: 16px;
     font-weight: 600;
@@ -186,12 +186,6 @@ body {
     margin-right: 0 !important;
     fill: rgb(213, 133, 133);
     transition-duration: 0.3s;
-}
-
-/* --- HIỆU ỨNG HOVER GIỮ NGUYÊN --- */
-.swiper-button-next:hover,
-.swiper-button-prev:hover {
-    color: transparent;
 }
 
 .swiper-button-next:hover .svg,
