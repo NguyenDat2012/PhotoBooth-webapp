@@ -41,10 +41,6 @@ body {
     justify-content: center;
     padding: 20px;
 }
-#camera-section{
-    position: relative;
-    
-}
 /* Khung Canvas dùng chung */
 .camera-wrapper {
     position: relative;
@@ -198,39 +194,43 @@ body {
 
     /* 1. Thiết lập khung sườn: Đẩy Sticker lên đỉnh, Nút xuống đáy */
     .content, #edit-section, #camera-section {
-        height: 100svh;
+        height: 80svh; /* Giữ cố định chiều cao màn hình */
         display: flex;
         flex-direction: column;
-        justify-content: space-between; 
+        justify-content: flex-start !important; /* Quan trọng: Xếp từ đỉnh xuống, không dãn cách */
         align-items: center;
         padding: 10px 0;
-        overflow: hidden;
+        gap: 0; /* Triệt tiêu mọi khoảng hở mặc định */
     }
 
     /* 2. Fix màn hình Chụp (Camera) */
     .camera-wrapper {
         position: relative;
-        transform: scale(0.7); /* Thu nhỏ cả cụm */
+        transform: scale(0.6); /* Thu nhỏ cả cụm */
         transform-origin: center;
-        margin: -50px -20px; /* Thu hồi khoảng trống của 900px */
-        height: 900px;
-        flex-shrink: 0;
+        
     }
 
     #captureButton {
-        position: relative !important;
-        margin: 10px auto 30px auto !important;
+    position: relative !important;
+        z-index: 100 !important;
         top: auto !important;
         left: auto !important;
-        transform: none !important;
-        z-index: 30;
-    }
+        
+        /* Thu nhỏ nút và đảm bảo nó hiện ra */
+        transform: scale(0.7) !important; 
+        
+        /* Khoảng cách 20px mong muốn */
+        margin-top: 0 !important; 
+        display: flex !important;
+        justify-content: center;
+}
 
     /* 3. Fix màn hình Edit (Xóa bỏ "khúc ngắt" dư thừa) */
     #editcanvas {
          /* Tự động co giãn để lấp đầy khoảng trống ở giữa */
         width: 100% !important;
-        height: auto !important; /* QUAN TRỌNG: Bỏ cao 900px cứng */
+        height: auto !important; 
         display: flex !important;
         justify-content: center;
         align-items: center;
