@@ -18,7 +18,6 @@ body {
     position: relative;
     width: 100vw;
     height: 100svh;
-    
 }
 
 .background > img {
@@ -41,6 +40,7 @@ body {
     justify-content: center;
     padding: 20px;
 }
+
 /* Khung Canvas dùng chung */
 .camera-wrapper {
     position: relative;
@@ -50,48 +50,67 @@ body {
     margin: 0 auto;
     transform-origin: center center;
 }
+
 #photoCanvas {
     position: absolute;
     top: 0;
     left: 0;
     width: 295px;
     height: 900px;
-    z-index: 4; 
+    z-index: 4;
 }
 
 #video {
-    position: absolute; width: 245px; height: 180px;
-    left: 25px; top: 45px; z-index: 2;
-    border-radius: 10px; object-fit: cover; transform: scaleX(-1);
+    position: absolute;
+    width: 245px;
+    height: 180px;
+    left: 25px;
+    top: 45px;
+    z-index: 2;
+    border-radius: 10px;
+    object-fit: cover;
+    transform: scaleX(-1);
 }
 
 #overlayFrame {
-    position: absolute; top: 0; left: 0; width: 295px; height: 900px;
-    z-index: 5; pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 295px;
+    height: 900px;
+    z-index: 5;
+    pointer-events: none;
 }
-.button-group{
+
+.button-group {
     position: relative;
 }
-#captureButton{
+
+#captureButton {
     position: absolute !important;
-    top: 88%; left: 48%; z-index: 15;
+    top: 88%;
+    left: 48%;
+    z-index: 15;
     transform: translateX(-50%);
     background: linear-gradient(145deg, #ffeead, #f0c05a);
-    border: 5px solid #8b5c2c; border-radius: 20px;
-    color: #9f1c1c; font-family: 'Brush Script MT', cursive;
-    font-size: 2.2rem; padding: 8px 36px; cursor: pointer;
-    
+    border: 5px solid #8b5c2c;
+    border-radius: 20px;
+    color: #9f1c1c;
+    font-family: 'Brush Script MT', cursive;
+    font-size: 2.2rem;
+    padding: 8px 36px;
+    cursor: pointer;
 }
-#edit-section .button-group{
+
+#edit-section .button-group {
     display: flex;
 }
 
-
 /* Menu Sticker - Chia làm 2 dòng */
 .icon-sticker-menu {
-    position: absolute; 
-    top: 30%; 
-    left: 65%; 
+    position: absolute;
+    top: 30%;
+    left: 65%;
     transform: translateX(-50%);
     
     /* Sử dụng Grid để chia hàng */
@@ -101,7 +120,7 @@ body {
     grid-gap: 20px;                     /* Khoảng cách giữa các sticker */
     
     padding: 5px;
-    width: auto; 
+    width: auto;
     max-width: 95vw;
     overflow-x: auto;                   /* Cho phép cuộn ngang nếu quá nhiều */
     z-index: 20;
@@ -110,25 +129,37 @@ body {
     border-radius: 15px;
 }
 
-.sticker-item { 
+.sticker-item {
     width: 55px;   /* Giảm nhẹ kích thước để fit 2 dòng đẹp hơn */
-    height: 55px; 
-    transition: 0.2s; 
-    cursor: pointer; 
+    height: 55px;
+    transition: 0.2s;
+    cursor: pointer;
     object-fit: contain;
 }
 
-.sticker-item:hover { 
-    transform: scale(1.15); 
+.sticker-item:hover {
+    transform: scale(1.15);
 }
 
 /* Scrollbar cho menu sticker */
-.icon-sticker-menu::-webkit-scrollbar { height: 6px; }
-.icon-sticker-menu::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.5); border-radius: 10px; }
+.icon-sticker-menu::-webkit-scrollbar {
+    height: 6px;
+}
+
+.icon-sticker-menu::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+}
 
 #countdownDisplay {
-    position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
-    font-size: 8em; color: rgb(20, 18, 18); z-index: 20; display: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 8em;
+    color: rgb(20, 18, 18);
+    z-index: 20;
+    display: none;
 }
 
 /* Đảm bảo phần edit hiện ra đúng vị trí */
@@ -140,9 +171,10 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    top:40px; /* Ưu tiên xếp từ trên xuống */
+    top: 40px; /* Ưu tiên xếp từ trên xuống */
 }
-#edit-section button-group {
+
+#edit-section .button-group {
     position: absolute;
     top: 85%; /* Đặt cả cụm ở tầm thấp màn hình */
     left: 50%;
@@ -160,12 +192,12 @@ body {
 #printBtn, #ResetBtn {
     position: relative; /* Trả về vị trí tự nhiên trong hàng ngang */
     background: linear-gradient(145deg, #ffeead, #f0c05a);
-    border: 5px solid #8b5c2c; 
+    border: 5px solid #8b5c2c;
     border-radius: 20px;
-    color: #9f1c1c; 
+    color: #9f1c1c;
     font-family: 'Brush Script MT', cursive;
-    font-size: 1.8rem; 
-    padding: 8px 20px; 
+    font-size: 1.8rem;
+    padding: 8px 20px;
     cursor: pointer;
     /* Xóa bỏ hoàn toàn top, left, transform cũ ở đây */
 }
@@ -179,22 +211,23 @@ body {
     align-items: center;
     position: relative;
     z-index: 5;
-    
 }
 
 /* CSS cho Canvas khi nằm trong thẻ chứa */
 #editcanvas canvas {
     display: block !important;
-    max-height: 80vh; 
+    max-height: 80vh;
     width: 100%; /* Để nó lấp đầy thẻ chứa editcanvas */
     height: 100%;
 }
-/* Media Query tổng hợp - Thay thế TẤT CẢ các media cũ của bạn */
-@media (max-width: 750px) {
 
-    /* 1. Thiết lập khung sườn: Đẩy Sticker lên đỉnh, Nút xuống đáy */
+/* ================= MEDIA QUERIES ================= */
+
+/* Mobile: max-width 750px */
+@media (max-width: 750px) {
+    /* Thiết lập khung sườn: Đẩy Sticker lên đỉnh, Nút xuống đáy */
     .content, #edit-section, #camera-section {
-        height: 80svh; /* Giữ cố định chiều cao màn hình */
+        height: 90svh; /* Giữ cố định chiều cao màn hình */
         display: flex;
         flex-direction: column;
         justify-content: flex-start !important; /* Quan trọng: Xếp từ đỉnh xuống, không dãn cách */
@@ -203,34 +236,33 @@ body {
         gap: 0; /* Triệt tiêu mọi khoảng hở mặc định */
     }
 
-    /* 2. Fix màn hình Chụp (Camera) */
+    /* Fix màn hình Chụp (Camera) */
     .camera-wrapper {
         position: relative;
-        transform: scale(0.6); /* Thu nhỏ cả cụm */
+        transform: scale(0.7); /* Thu nhỏ cả cụm */
         transform-origin: center;
-        
     }
 
     #captureButton {
-    position: relative !important;
+        position: relative !important;
         z-index: 100 !important;
         top: auto !important;
         left: auto !important;
         
         /* Thu nhỏ nút và đảm bảo nó hiện ra */
-        transform: scale(0.7) !important; 
+        transform: scale(0.7) !important;
         
         /* Khoảng cách 20px mong muốn */
-        margin-top: 0 !important; 
+        margin-top: 0 !important;
         display: flex !important;
         justify-content: center;
-}
+    }
 
-    /* 3. Fix màn hình Edit (Xóa bỏ "khúc ngắt" dư thừa) */
+    /* Fix màn hình Edit (Xóa bỏ "khúc ngắt" dư thừa) */
     #editcanvas {
-         /* Tự động co giãn để lấp đầy khoảng trống ở giữa */
+        /* Tự động co giãn để lấp đầy khoảng trống ở giữa */
         width: 100% !important;
-        height: auto !important; 
+        height: auto !important;
         display: flex !important;
         justify-content: center;
         align-items: center;
@@ -241,7 +273,7 @@ body {
 
     #editcanvas canvas {
         /* Ép ảnh cao tối đa 55% màn hình, chiều rộng tự co theo tỉ lệ */
-        height: 55svh !important; 
+        height: 55svh !important;
         width: auto !important;
         max-width: 90vw;
         position: relative !important;
@@ -249,10 +281,10 @@ body {
         left: auto !important;
         transform: none !important;
         object-fit: contain;
-        box-shadow: 0 5px 15px rgba(0,0,0,0);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0);
     }
 
-    /* 4. Nhóm nút bấm Print & Reset (Nằm ngang và bám đáy) */
+    /* Nhóm nút bấm Print & Reset (Nằm ngang và bám đáy) */
     #edit-section .button-group {
         position: relative !important;
         display: flex !important;
@@ -272,7 +304,7 @@ body {
         margin: 0 !important;
     }
 
-    /* 5. Menu Sticker */
+    /* Menu Sticker */
     .icon-sticker-menu {
         transform: scale(0.7);
         position: relative !important;
@@ -284,5 +316,70 @@ body {
         max-height: 150px;
         width: 95%;
         z-index: 100;
+    }
+}
+
+/* Desktop: min-width 992px and max-width 1200px */
+@media (min-width: 992px) and (max-width: 1280px) {
+    /* Đảm bảo chiều cao tối thiểu 700px để phù hợp với desktop */
+    .background, .content {
+        min-height: 600px; /* Giảm từ 1100px xuống 700px như bạn yêu cầu */
+        max-width: 1280px; /* Giới hạn width để fit */
+        margin: 0 auto; /* Căn giữa nếu cần */
+        padding: 10px; /* Giảm padding để giảm khoảng trống */
+    }
+
+    /* Thu nhỏ toàn bộ 0.8 lần cho desktop, nhưng giữ nút capture gốc */
+    .camera-wrapper, #photoCanvas, #editcanvas {
+        transform: scale(0.7); /* Áp dụng scale 0.8 */
+        transform-origin: center;
+    }
+
+    /* Giữ nút capture không scale để không bị mất */
+    #captureButton {
+       position: absolute !important;
+        bottom: 60px !important; /* Cách đáy khung 20px */
+        top: auto !important;    /* Gỡ bỏ top cũ */
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        display: block !important;
+        z-index: 1000 !important;
+        white-space: nowrap; /* Không cho chữ xuống dòng */
+    }
+
+    /* Điều chỉnh sticker menu để fit desktop */
+    .icon-sticker-menu {
+        position: absolute;
+        top: 30%;
+        left: 65%;
+        transform: translateX(-50%);
+        grid-template-rows: repeat(6, 1fr); /* Giữ nguyên 6 dòng nếu cần, hoặc điều chỉnh thành 3-4 dòng cho đẹp */
+        grid-gap: 20px;
+        max-width: 300px; /* Giảm để fit với scale */
+        width: auto;
+    }
+
+    /* Nút bấm và edit section giữ nguyên, nhưng đảm bảo căn chỉnh tốt */
+    #edit-section {
+        top: 0; /* Loại bỏ top: 40px để giảm khoảng trống trên */
+        flex-shrink: 0; /* Tránh co giãn không mong muốn */
+    }
+    #edit-section .button-group {
+        gap: 15px; /* Giảm gap để nút sát nhau hơn */
+    }
+
+    #printBtn, #ResetBtn {
+        font-size: 2rem; /* Tăng font-size cho desktop */
+        padding: 10px 25px;
+    }
+
+    /* Canvas trong edit theo kích thước mới */
+    #editcanvas {
+        margin: 0; /* Loại bỏ margin dư thừa */
+        flex-shrink: 0; /* Đảm bảo không co giãn */
+    }
+    #editcanvas canvas {
+        width: 236px; /* Phù hợp với JS */
+        height: 720px;
     }
 }
