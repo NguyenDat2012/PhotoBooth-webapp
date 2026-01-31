@@ -84,10 +84,10 @@ function capturePhoto() {
     ctx.drawImage(
         video, 
         0, 0,           // Source X, Y: Bắt đầu cắt từ góc 0,0 của luồng video camera
-        video.videoWidth, video.videoHeight, // Source W, H: Lấy hết toàn bộ khung hình camera
-        0, 0,           // Destination X, Y: Vẽ tại gốc tọa độ mới (đã translate)
-        vDisplayWidth,  // Destination W: Vẽ đúng bằng chiều rộng hiển thị
-        vDisplayHeight  // Destination H: Vẽ đúng bằng chiều cao hiển thị
+        video.videoWidth, video.videoHeight // Source W, H: Lấy hết toàn bộ khung hình camera
+        //0, 0,           // Destination X, Y: Vẽ tại gốc tọa độ mới (đã translate)
+        //vDisplayWidth,  // Destination W: Vẽ đúng bằng chiều rộng hiển thị
+        //vDisplayHeight  // Destination H: Vẽ đúng bằng chiều cao hiển thị
     );
     ctx.restore();
     console.log(`Đã vẽ ảnh ${total + 1} chính xác tại X:${vDisplayLeft} Y:${vDisplayTop}`);
