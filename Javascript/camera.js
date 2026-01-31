@@ -37,14 +37,19 @@ async function setupCamera() {
     try {
         const stream = await navigator.mediaDevices.getUserMedia(constraints);
         video.srcObject = stream;
+        
+        // Cần thiết cho Safari/iOS
+        video.setAttribute('playsinline', 'true'); 
+        video.setAttribute('autoplay', 'true');
+        video.setAttribute('muted', 'true'); // Một số trình duyệt yêu cầu muted để autoplay
+
         video.onloadedmetadata = () => {
             video.play();
-            // Áp dụng mirror cho preview video
             video.style.transform = "scaleX(-1)";
         };
     } catch (err) {
         console.error("Lỗi camera:", err);
-        alert("Không thể truy cập camera.");
+        alert("Không thể truy cập camera. Vui lòng cấp quyền hoặc kiểm tra kết nối https.");
     }
 }
 
