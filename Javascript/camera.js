@@ -12,15 +12,19 @@ const datatype = urlParams.get('data_type');
 
 let total = 0;
 const totalFrames = 4;
-let CANVAS_WIDTH;
-let CANVAS_HEIGHT;
+let CANVAS_WIDTH, CANVAS_HEIGHT;
+let camera_width, camera_height;
 
 if(datatype ==  'portrait'){
     CANVAS_WIDTH = 295;
     CANVAS_HEIGHT = 900;
+    camera_width = 245;
+    camera_height = 180;
 }else{
     CANVAS_WIDTH = 295;
     CANVAS_HEIGHT = 900;
+    camera_width = 245;
+    camera_height = 180;
 }
 
 
@@ -62,9 +66,9 @@ function capturePhoto() {
     const canvas = document.getElementById('photoCanvas');
     const ctx = canvas.getContext('2d');
     
-    // Kích thước ô đích trên canvas
-    const vDisplayWidth = 245;
-    const vDisplayHeight = 180;
+     
+    const vDisplayWidth = camera_width;
+    const vDisplayHeight = camera_height;
     const vDisplayLeft = video.offsetLeft;
     let vDisplayTop = video.offsetTop;
 
@@ -82,7 +86,6 @@ function capturePhoto() {
     let sx, sy, sw, sh;
 
     if (videoRatio > targetRatio) {
-        // Nếu video rộng hơn ô chứa (thường gặp trên điện thoại nằm ngang hoặc webcam)
         sh = video.videoHeight;
         sw = sh * targetRatio;
         sx = (video.videoWidth - sw) / 2;
