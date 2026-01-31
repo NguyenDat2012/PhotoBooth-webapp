@@ -62,35 +62,53 @@ function capturePhoto() {
     const canvas = document.getElementById('photoCanvas');
     const ctx = canvas.getContext('2d');
     
-    // Đảm bảo lấy thông số MỚI NHẤT từ video tại thời điểm bấm chụp
+    // Kích thước ô đích trên canvas
     const vDisplayWidth = 245;
     const vDisplayHeight = 180;
     const vDisplayLeft = video.offsetLeft;
     let vDisplayTop = video.offsetTop;
-    console.log(`Width: ${vDisplayWidth} Height:${vDisplayHeight}`);
 
     if (total === 0) {
         canvas.width = CANVAS_WIDTH;
         canvas.height = CANVAS_HEIGHT;
     }
 
-    // 2. Vẽ ảnh lên Canvas
+    // --- BẮT ĐẦU PHẦN SỬA ĐỂ CHỐNG BÓP ẢNH ---
+    
+    // 1. Tính toán tỉ lệ của video và ô chứa
+    const videoRatio = video.videoWidth / video.videoHeight;
+    const targetRatio = vDisplayWidth / vDisplayHeight;
+
+    let sx, sy, sw, sh;
+
+    if (videoRatio > targetRatio) {
+        // Nếu video rộng hơn ô chứa (thường gặp trên điện thoại nằm ngang hoặc webcam)
+        sh = video.videoHeight;
+        sw = sh * targetRatio;
+        sx = (video.videoWidth - sw) / 2;
+        sy = 0;
+    } else {
+        // Nếu video dài hơn ô chứa (thường gặp khi cầm điện thoại dọc)
+        sw = video.videoWidth;
+        sh = sw / targetRatio;
+        sx = 0;
+        sy = (video.videoHeight - sh) / 2;
+    }
+
+    // 2. Vẽ lên Canvas
     ctx.save();
-    // Dịch chuyển tâm đến đúng vị trí video đang hiển thị trên màn hình
     ctx.translate(vDisplayLeft + vDisplayWidth, vDisplayTop);
     ctx.scale(-1, 1); // Hiệu ứng lật gương
 
-    // Vẽ từ video gốc lên tọa độ đích
     ctx.drawImage(
         video, 
-        0, 0,           // Source X, Y: Bắt đầu cắt từ góc 0,0 của luồng video camera
-        video.videoWidth, video.videoHeight // Source W, H: Lấy hết toàn bộ khung hình camera
-        //0, 0,           // Destination X, Y: Vẽ tại gốc tọa độ mới (đã translate)
-        //vDisplayWidth,  // Destination W: Vẽ đúng bằng chiều rộng hiển thị
-        //vDisplayHeight  // Destination H: Vẽ đúng bằng chiều cao hiển thị
+        sx, sy, sw, sh,               // CẮT phần giữa của video theo tỉ lệ ô chứa
+        0, 0, vDisplayWidth, vDisplayHeight // VẼ vào đúng kích thước ô chứa
     );
     ctx.restore();
-    console.log(`Đã vẽ ảnh ${total + 1} chính xác tại X:${vDisplayLeft} Y:${vDisplayTop}`);
+    
+    // --- KẾT THÚC PHẦN SỬA ---
+
     total++;
     if (total < totalFrames) {
         moveCameraToNextFrame(vDisplayTop);
