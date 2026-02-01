@@ -44,13 +44,31 @@ body {
 
 /* ================= TITLE ================= */
 .select-title {
-    margin-top: 5vh; /* Giảm từ 14vh xuống để đẩy các phần tử khác lên */
-    font-size: clamp(24px, 4vw, 40px); /* Thu nhỏ font chữ một chút */
-    width: 90%; /* Không để lan sát mép */
-    text-align: center;
-    line-height: 1.2;
+    margin-top: 5vh;
     margin-bottom: 10px;
+
+    font-family: 
+        "Lobster", 
+        "Dancing Script", 
+        "Pacifico", 
+        "SVN-Brush", 
+        "UTM ThuPhap", 
+        cursive;
+
+    font-size: clamp(26px, 10vw, 42px);
+    width: 90%;
+    text-align: center;
+    line-height: 1.5;
+
+    color: #d62828; /* đỏ Tết */
+    letter-spacing: 1px;
+
+    /* Hiệu ứng ánh vàng – may mắn */
+    text-shadow:
+        2px 2px 0 #fcbf49,
+        4px 4px 10px rgba(252, 191, 73, 0.6);
 }
+
 /* From Uiverse.io by arthur_6104 */ 
 /* Container bọc ngoài - Ép nằm ngang */
 .menu-group {
@@ -75,19 +93,24 @@ body {
 }
 
 .filter-btn {
-    background-color: #dddddd;
-    border: 3px solid #fff;
+    background-color: #eef3bd;
+    border: 3px solid #fdfed4;
     padding: 10px 20px;     /* Tăng padding để nút dễ bấm trên iPhone */
     border-radius: 4px;
 }
 
 .filter-btn span {
-    font-size: 1.1rem;      /* Tương đương 1.2em */
-    font-weight: 800;
-    color: black;
-    letter-spacing: 1px;
+    font-family:
+        "Be Vietnam Pro",
+        "Montserrat",
+        "SVN-Avo",
+        sans-serif;
+
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 1.7px;
     text-transform: uppercase;
-    white-space: nowrap;    /* Giữ chữ không bị xuống dòng */
+    color: #111;   /* Giữ chữ không bị xuống dòng */
 }
 
 /* Hiệu ứng nhấn nút (Lún xuống) */
@@ -188,8 +211,6 @@ body {
     transition-duration: 0.3s;
 }
 
-
-
 .swiper-button-next:active,
 .swiper-button-prev:active {
     transform: translate(3px, 3px) !important; /* Giữ trọng tâm khi nhấn */
@@ -210,9 +231,9 @@ body {
         padding: 0 15px;
     }
     .filter-btn {
-        padding: 8px 15px;
+        padding: 8px 5px;
     }
     .filter-btn span {
-        font-size: 0.9rem;  /* Giảm font chữ một chút để vừa chiều ngang */
+        font-size: 0.5rem;  /* Giảm font chữ một chút để vừa chiều ngang */
     }
 }
