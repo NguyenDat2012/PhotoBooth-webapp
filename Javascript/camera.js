@@ -130,7 +130,11 @@ function moveCameraToNextFrame(currentTop) {
 function finalizeStrip() {
     // 1. Vẽ khung overlay lên trên cùng của 4 tấm ảnh
     if (overlayFrame.complete) {
+        if (typeof renderCanvasAll === 'function') {
+        renderCanvasAll();
+    }
         ctx.drawImage(overlayFrame, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+        
     }
 
     // 2. Dừng Camera để giải phóng tài nguyên

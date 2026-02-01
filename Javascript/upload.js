@@ -1,164 +1,176 @@
+
 const CANVAS_WIDTH = 295;
 const CANVAS_HEIGHT = 900;
 const GAP = 178;
+const START_TOP = 45;
 
-// Lấy thông số từ URL
 const urlParams = new URLSearchParams(window.location.search);
 const datatype = urlParams.get('data_type');
-
-// Thiết lập vùng hiển thị ảnh dựa trên loại khung
 const cropW = datatype === 'portrait' ? 245 : 260;
 const cropH = datatype === 'portrait' ? 180 : 179;
 
-let canvas, ctx, fileInput, uploadButton, overlayFrame;
+let canvas = document.getElementById('photoCanvas');
+let ctx = canvas ? canvas.getContext('2d') : null;
+let fileInput = document.getElementById('fileInput');
+let uploadButton = document.getElementById('uploadButton');
+let overlayFrame = document.getElementById('overlayFrame');
+
 let uploadedPhotos = []; 
-let selectedIdx = -1;
-let isMoving = false;
+// TUYỆT ĐỐI KHÔNG KHAI BÁO stickersInCanvas Ở ĐÂY NỮA
+let isStickerMode = false;
+
+let selectedPhotoIdxLocal = -1;
+let isDraggingLocal = false;
 let startX, startY;
 
 document.addEventListener('DOMContentLoaded', () => {
-    canvas = document.getElementById('photoCanvas');
-    ctx = canvas.getContext('2d');
-    fileInput = document.getElementById('fileInput');
-    uploadButton = document.getElementById('uploadButton');
-    overlayFrame = document.getElementById('overlayFrame');
-
+    if (!canvas) return;
     canvas.width = CANVAS_WIDTH;
     canvas.height = CANVAS_HEIGHT;
-
     loadFrameFromUrl();
     setupEventListeners();
 });
 
-function loadFrameFromUrl() {
-    const encodedUrl = urlParams.get('image_url');
-    if (encodedUrl && overlayFrame) {
-        overlayFrame.crossOrigin = "anonymous"; 
-        overlayFrame.src = decodeURIComponent(encodedUrl);
-        overlayFrame.onload = () => drawAll();
+// Hàm vẽ tổng hợp: Vẽ ảnh nền -> Khung -> Sticker (lấy từ biến chung)
+function renderCanvasAll() {
+    if (!ctx) return;
+    ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+    
+    // 1. Vẽ Ảnh nền
+    uploadedPhotos.forEach((p) => {
+        ctx.save();
+        ctx.beginPath();
+        ctx.rect(p.cropX, p.cropY, cropW, cropH);
+        ctx.clip(); 
+        ctx.drawImage(p.img, p.x, p.y, p.img.width * p.scale, p.img.height * p.scale);
+        ctx.restore();
+    });
+
+    // 2. Vẽ Khung
+    if (overlayFrame && overlayFrame.complete) {
+        ctx.drawImage(overlayFrame, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+    }
+
+    // 3. Vẽ Sticker từ biến của DragandDrop.js
+    // Kiểm tra xem biến đã tồn tại chưa để tránh lỗi undefined
+    if (typeof stickersInCanvas !== 'undefined') {
+        stickersInCanvas.forEach(s => {
+            ctx.drawImage(s.img, s.x, s.y, s.w, s.h);
+        });
     }
 }
 
 function setupEventListeners() {
-    uploadButton.addEventListener('click', () => {
-        if (uploadedPhotos.length < 4) fileInput.click();
-    });
+    // Thu phóng ảnh (Zoom)
+    canvas.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        const pos = getPos(e);
+        const idx = Math.floor((pos.y - START_TOP) / GAP);
+        if (uploadedPhotos[idx]) {
+            const delta = e.deltaY > 0 ? -0.05 : 0.05;
+            uploadedPhotos[idx].scale = Math.max(0.01, uploadedPhotos[idx].scale + delta);
+            renderCanvasAll(); 
+        }
+    }, { passive: false });
 
-    fileInput.addEventListener('change', handleFileUpload);
-    canvas.addEventListener('wheel', handleWheel, { passive: false });
-    canvas.addEventListener('mousedown', handleMouseDown);
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('mouseup', handleMouseUp);
+    // Xử lý di chuyển ảnh nền
+    canvas.onmousedown = canvas.ontouchstart = (e) => {
+        const pos = getPos(e);
+        
+        // Chỉ cho phép di chuyển ảnh nếu KHÔNG chạm trúng sticker (Logic này nên phối hợp)
+        // Ở đây ta ưu tiên logic di chuyển ảnh trước nếu chưa vào mode sticker
+        const idx = Math.floor((pos.y - START_TOP) / GAP);
+        if (uploadedPhotos[idx]) {
+            selectedPhotoIdxLocal = idx;
+            isDraggingLocal = true;
+            startX = pos.x;
+            startY = pos.y;
+        }
+    };
+
+    window.onmousemove = window.ontouchmove = (e) => {
+        if (!isDraggingLocal || selectedPhotoIdxLocal === -1) return;
+        const pos = getPos(e);
+        const p = uploadedPhotos[selectedPhotoIdxLocal];
+        p.x += (pos.x - startX);
+        p.y += (pos.y - startY);
+        startX = pos.x;
+        startY = pos.y;
+        renderCanvasAll();
+    };
+
+    window.onmouseup = window.ontouchend = () => {
+        isDraggingLocal = false;
+        selectedPhotoIdxLocal = -1;
+    };
+
+    if (uploadButton) {
+        uploadButton.onclick = () => { if (uploadedPhotos.length < 4) fileInput.click(); };
+    }
+    fileInput.onchange = handleFileUpload;
+
+    // Nút Reset (Dùng chung biến stickersInCanvas)
+    document.getElementById('ResetBtn').onclick = () => {
+        if (typeof stickersInCanvas !== 'undefined') {
+            stickersInCanvas.length = 0; // Xóa sạch mảng mà không khai báo lại
+            renderCanvasAll();
+        }
+    };
 }
 
 function handleFileUpload(e) {
     const file = e.target.files[0];
     if (!file) return;
-
     const reader = new FileReader();
-    reader.onload = (event) => {
+    reader.onload = (ev) => {
         const img = new Image();
         img.onload = () => {
             const idx = uploadedPhotos.length;
-            const scaleW = cropW / img.width;
-            const scaleH = cropH / img.height;
-            const initialScale = Math.max(scaleW, scaleH);
-
+            const sc = Math.max(cropW / img.width, cropH / img.height);
             uploadedPhotos.push({
-                img: img,
+                img, scale: sc,
                 x: (CANVAS_WIDTH - cropW) / 2,
-                y: 45 + (idx * GAP),
-                scale: initialScale,
+                y: START_TOP + (idx * GAP),
                 cropX: (CANVAS_WIDTH - cropW) / 2,
-                cropY: 45 + (idx * GAP)
+                cropY: START_TOP + (idx * GAP)
             });
-            drawAll();
-            
-            // Khi đủ 4 ảnh, tự động chuyển sang chế độ Sticker giống Camera
-            if (uploadedPhotos.length === 4) {
-                setTimeout(finalizeUpload, 500);
-            }
+            renderCanvasAll();
+            if (uploadedPhotos.length === 4) finalizeToEdit();
         };
-        img.src = event.target.result;
+        img.src = ev.target.result;
     };
     reader.readAsDataURL(file);
-    fileInput.value = ""; 
+    fileInput.value = "";
 }
 
-function drawAll() {
-    if (!ctx) return;
-    ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    
-    uploadedPhotos.forEach((p) => {
-        ctx.save();
-        // Cắt vùng hiển thị ảnh (Clip)
-        ctx.beginPath();
-        ctx.rect(p.cropX, p.cropY, cropW, cropH);
-        ctx.clip();
-
-        ctx.drawImage(p.img, p.x, p.y, p.img.width * p.scale, p.img.height * p.scale);
-        ctx.restore();
-    });
-
-    // Vẽ khung lên trên cùng
-    if (overlayFrame && overlayFrame.complete && overlayFrame.src) {
-        ctx.drawImage(overlayFrame, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    }
-}
-
-/**
- * HÀM QUAN TRỌNG: Giống hệt camera.js
- * Chụp lại toàn bộ canvas hiện tại để làm nền tĩnh cho DragandDrop.js
- */
-function finalizeUpload() {
-    // 1. Vẽ bản cuối cùng thật chuẩn
-    drawAll();
+function finalizeToEdit() {
+    isStickerMode = true;
+    renderCanvasAll();
     document.getElementById('camera-section').style.display = 'none';
-    document.getElementById('edit-section').style.display = 'block';
-    const editSection = document.getElementById('edit-section');
-    editSection.appendChild(canvas);
+    document.getElementById('edit-section').style.display = 'flex';
+    document.getElementById('editcanvas').appendChild(canvas);
+
+    // Kích hoạt hàm khởi tạo Sticker của DragandDrop.js
     if (typeof startEditingSystem === 'function') {
         startEditingSystem();
     }
 }
 
-// Logic tương tác di chuyển/thu phóng
-function handleWheel(e) {
-    e.preventDefault();
-    const pos = getPos(e);
-    const idx = Math.floor((pos.y - 45) / GAP);
-    if (uploadedPhotos[idx]) {
-        const delta = e.deltaY > 0 ? -0.02 : 0.02;
-        uploadedPhotos[idx].scale = Math.max(0.01, uploadedPhotos[idx].scale + delta);
-        drawAll();
-    }
-}
-function handleMouseDown(e) {
-    const pos = getPos(e);
-    const idx = Math.floor((pos.y - 45) / GAP);
-    if (uploadedPhotos[idx]) {
-        selectedIdx = idx;
-        isMoving = true;
-        startX = pos.x;
-        startY = pos.y;
-    }
-}
-function handleMouseMove(e) {
-    if (!isMoving || selectedIdx === -1) return;
-    const pos = getPos(e);
-    uploadedPhotos[selectedIdx].x += (pos.x - startX);
-    uploadedPhotos[selectedIdx].y += (pos.y - startY);
-    startX = pos.x;
-    startY = pos.y;
-    drawAll();
-}
-
-function handleMouseUp() { isMoving = false; selectedIdx = -1; }
-
 function getPos(e) {
     const rect = canvas.getBoundingClientRect();
+    const cx = e.touches ? e.touches[0].clientX : e.clientX;
+    const cy = e.touches ? e.touches[0].clientY : e.clientY;
     return {
-        x: (e.clientX - rect.left) * (canvas.width / rect.width),
-        y: (e.clientY - rect.top) * (canvas.height / rect.height)
+        x: (cx - rect.left) * (CANVAS_WIDTH / rect.width),
+        y: (cy - rect.top) * (CANVAS_HEIGHT / rect.height)
     };
+}
+
+function loadFrameFromUrl() {
+    const encodedUrl = urlParams.get('image_url');
+    if (encodedUrl && overlayFrame) {
+        overlayFrame.crossOrigin = "anonymous";
+        overlayFrame.src = decodeURIComponent(encodedUrl);
+        overlayFrame.onload = () => renderCanvasAll();
+    }
 }

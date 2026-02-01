@@ -85,3 +85,14 @@ document.getElementById('ResetBtn').onclick = () => {
     stickersInCanvas = [];
     renderCanvas();
 };
+
+document.getElementById('printBtn').onclick = () => {
+    const link = document.createElement('a');
+    link.href = editCanvas.toDataURL();
+    link.download = 'Tet_2026.png';
+    link.click();
+};
+
+document.getElementById('homeBtn').onclick = () => {
+    setTimeout(() => (window.location.href = 'index.html'), 100);
+};
