@@ -2,6 +2,8 @@ const video = document.getElementById('video');
 const overlayFrame = document.getElementById('overlayFrame');
 const btncapture = document.getElementById('captureButton');
 const finalImage = document.getElementById('finalImage');
+const editcanvas = document.getElementById('editcanvas');
+const cameraWrapper = document.getElementById('camera-wrapper');
 
 const canvas = document.getElementById('photoCanvas');
 const ctx = canvas.getContext('2d');
@@ -10,7 +12,9 @@ const urlParams = new URLSearchParams(window.location.search);
 const encodedUrl = urlParams.get('image_url');
 const datatype = urlParams.get('data_type');
 
+document.body.classList.add(datatype); 
 let total = 0;
+let gap=0;
 const totalFrames = 4;
 let CANVAS_WIDTH, CANVAS_HEIGHT;
 let camera_width, camera_height;
@@ -19,21 +23,50 @@ if(datatype ==  'portrait'){
     CANVAS_WIDTH = 295;
     CANVAS_HEIGHT = 900;
     camera_width = 245;
-    camera_height = 180;
+    camera_height = 182;
+    cameraWrapper.style.width = 295 + 'px';
+    cameraWrapper.style.height = 900 + 'px';
+    editcanvas.style.width = 295 + 'px';
+    editcanvas.style.height = 900 + 'px';
+    canvas.style.width = 295 + 'px';
+    canvas.style.height = 900 + 'px';
+    gap= 180;
 }else{
-    CANVAS_WIDTH = 295;
-    CANVAS_HEIGHT = 900;
-    camera_width = 245;
-    camera_height = 180;
+    CANVAS_WIDTH = 880;
+    CANVAS_HEIGHT = 800;
+    camera_width = 400;
+    camera_height = 300;
+    cameraWrapper.style.width = 880+ 'px';
+    cameraWrapper.style.height = 800 + 'px';
+    editcanvas.style.width = 880 + 'px';
+    editcanvas.style.height = 800 + 'px';
+    canvas.style.width = 880 + 'px';
+    canvas.style.height = 750 + 'px';
+    gap= 280;
 }
 
-
+function loadFrameFromUrl() {
+   if (encodedUrl && overlayFrame) {
+        // Cho phép Canvas vẽ ảnh từ URL bên ngoài
+        overlayFrame.crossOrigin = "anonymous"; 
+        overlayFrame.style.width = CANVAS_WIDTH + 'px';
+        overlayFrame.style.height = CANVAS_HEIGHT + 'px';
+        overlayFrame.src = decodeURIComponent(encodedUrl);
+        
+        overlayFrame.onload = () => {
+            console.log("Khung ảnh đã tải xong và sẵn sàng để vẽ.");
+        };
+        overlayFrame.onerror = () => {
+            console.error("Không thể tải khung ảnh từ URL.");
+        };
+    }
+}
 async function setupCamera() {
     const constraints = {
         video: { 
             facingMode: "user",
-            width: { ideal: datatype === 'portrait' ? 245 : 260 },
-            height: { ideal: datatype === 'portrait' ? 180 : 279 }
+            width: { ideal: datatype === 'portrait' ? 245 : 400 },
+            height: { ideal: datatype === 'portrait' ? 182 : 279 }
         },
         audio: false
     };
@@ -57,10 +90,7 @@ async function setupCamera() {
     }
 }
 
-// Chỉ để lại các thông số cố định của Frame (Khung ảnh)
-const CONFIG = {
-    gap: 178,          // Khoảng cách nhảy giữa các ô
-};
+
 
 function capturePhoto() {
     const canvas = document.getElementById('photoCanvas');
@@ -76,41 +106,17 @@ function capturePhoto() {
         canvas.width = CANVAS_WIDTH;
         canvas.height = CANVAS_HEIGHT;
     }
-
-    // --- BẮT ĐẦU PHẦN SỬA ĐỂ CHỐNG BÓP ẢNH ---
-    
-    // 1. Tính toán tỉ lệ của video và ô chứa
-    const videoRatio = video.videoWidth / video.videoHeight;
-    const targetRatio = vDisplayWidth / vDisplayHeight;
-
-    let sx, sy, sw, sh;
-
-    if (videoRatio > targetRatio) {
-        sh = video.videoHeight;
-        sw = sh * targetRatio;
-        sx = (video.videoWidth - sw) / 2;
-        sy = 0;
-    } else {
-        // Nếu video dài hơn ô chứa (thường gặp khi cầm điện thoại dọc)
-        sw = video.videoWidth;
-        sh = sw / targetRatio;
-        sx = 0;
-        sy = (video.videoHeight - sh) / 2;
-    }
-
     // 2. Vẽ lên Canvas
     ctx.save();
     ctx.translate(vDisplayLeft + vDisplayWidth, vDisplayTop);
     ctx.scale(-1, 1); // Hiệu ứng lật gương
 
     ctx.drawImage(
-        video, 
-        sx, sy, sw, sh,               // CẮT phần giữa của video theo tỉ lệ ô chứa
+        video,           // CẮT phần giữa của video theo tỉ lệ ô chứa
         0, 0, vDisplayWidth, vDisplayHeight // VẼ vào đúng kích thước ô chứa
     );
     ctx.restore();
     
-    // --- KẾT THÚC PHẦN SỬA ---
 
     total++;
     if (total < totalFrames) {
@@ -123,7 +129,7 @@ function capturePhoto() {
 }
 function moveCameraToNextFrame(currentTop) {
     // Di chuyển video preview xuống ô tiếp theo
-    const nextY = currentTop + CONFIG.gap; 
+    const nextY = currentTop + gap; 
     video.style.top = nextY + "px";
 }
 
@@ -154,20 +160,7 @@ function finalizeStrip() {
     startEditingSystem();
 }
 // Giữ nguyên các hàm bổ trợ của bạn
-function loadFrameFromUrl() {
-   if (encodedUrl && overlayFrame) {
-        // Cho phép Canvas vẽ ảnh từ URL bên ngoài
-        overlayFrame.crossOrigin = "anonymous"; 
-        overlayFrame.src = decodeURIComponent(encodedUrl);
-        
-        overlayFrame.onload = () => {
-            console.log("Khung ảnh đã tải xong và sẵn sàng để vẽ.");
-        };
-        overlayFrame.onerror = () => {
-            console.error("Không thể tải khung ảnh từ URL.");
-        };
-    }
-}
+
 
 
 const startCountDown = (callback) => {

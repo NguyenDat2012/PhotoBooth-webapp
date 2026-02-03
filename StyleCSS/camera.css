@@ -42,10 +42,8 @@ body {
 }
 
 /* Khung Canvas dùng chung */
-.camera-wrapper {
+#camera-wrapper {
     position: relative;
-    width: 295px;
-    height: 900px;
     z-index: 10;
     margin: 0 auto;
     transform-origin: center center;
@@ -55,17 +53,15 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    width: 295px;
-    height: 900px;
+
     z-index: 4;
 }
 
 #video {
     position: absolute;
-    width: 245px;
-    height: 180px;
+    
     left: 25px;
-    top: 45px;
+    top: 40px;
     z-index: 2;
     border-radius: 10px;
     object-fit: cover;
@@ -76,8 +72,7 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    width: 295px;
-    height: 900px;
+    
     z-index: 5;
     pointer-events: none;
 }
@@ -204,8 +199,7 @@ body {
 
 /* Thẻ chứa Canvas mới của bạn */
 #editcanvas {
-    width: 295px; /* Khớp với chiều rộng canvas */
-    height: 900px;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -226,7 +220,7 @@ body {
 /* Mobile: max-width 750px */
 @media (max-width: 550px) {
     /* Thiết lập khung sườn: Đẩy Sticker lên đỉnh, Nút xuống đáy */
-    .content, #edit-section, #camera-section {
+     .content, #edit-section, #camera-section {
         height: 100svh; /* Giữ cố định chiều cao màn hình */
         display: flex;
         flex-direction: column;
@@ -234,14 +228,16 @@ body {
         align-items: center;
         padding: 10px 0;
         gap: 0; /* Triệt tiêu mọi khoảng hở mặc định */
+        
     }
 
     /* Fix màn hình Chụp (Camera) */
-    .camera-wrapper {
+    #camera-wrapper {
         position: relative;
-        transform: scale(0.6); /* Thu nhỏ cả cụm */
+         /* Thu nhỏ cả cụm */
         transform-origin: center;
         bottom: 100px;
+        transform: scale(0.6);
     }
 
     #captureButton {
@@ -334,7 +330,7 @@ body {
     }
 
     /* Fix màn hình Chụp (Camera) */
-    .camera-wrapper {
+    #camera-wrapper {
         position: relative;
         transform: scale(0.6); /* Thu nhỏ cả cụm */
         transform-origin: center;
@@ -432,7 +428,7 @@ body {
     }
 
     /* Fix màn hình Chụp (Camera) */
-    .camera-wrapper {
+    #camera-wrapper {
         position: relative;
         transform: scale(0.6); /* Thu nhỏ cả cụm */
         transform-origin: center;

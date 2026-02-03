@@ -74,15 +74,8 @@ function setupInteraction() {
     window.onmouseup = window.ontouchend = () => { isDragging = false; selectedSticker = null; };
 }
 
-document.getElementById('printBtn').onclick = () => {
-    const link = document.createElement('a');
-    link.href = editCanvas.toDataURL();
-    link.download = 'Tet_2026.png';
-    link.click();
-};
-
 document.getElementById('ResetBtn').onclick = () => {
-    stickersInCanvas = [];
+    stickersInCanvas.length = 0;
     renderCanvas();
 };
 

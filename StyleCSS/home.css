@@ -69,7 +69,7 @@ body, html {
 .button-container {
     position: absolute;
     left: 0;
-    bottom: 15%; /* Căn chỉnh nút nằm ở phần dưới của nhân vật */
+    bottom: 13%; /* Căn chỉnh nút nằm ở phần dưới của nhân vật */
     width: 100%;
     pointer-events: none;
 }
@@ -86,7 +86,7 @@ body, html {
     position: absolute;
     display: flex;
     gap: 15px;
-    left:40%;
+    left:38%;
     flex-direction: row; /* Giữ 2 nút trên cùng 1 hàng */
     width: max-content;
 
