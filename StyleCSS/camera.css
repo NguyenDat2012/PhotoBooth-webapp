@@ -160,8 +160,6 @@ body {
 /* Đảm bảo phần edit hiện ra đúng vị trí */
 #edit-section {
     position: relative;
-    width: 100%;
-    height: 100%;
     display: none; /* Sẽ được JS đổi thành flex */
     flex-direction: column;
     align-items: center;
@@ -220,7 +218,7 @@ body {
 /* Mobile: max-width 750px */
 @media (max-width: 550px) {
     /* Thiết lập khung sườn: Đẩy Sticker lên đỉnh, Nút xuống đáy */
-     .content, #edit-section, #camera-section {
+    body.portrait .content,body.portrait #edit-section,body.portrait #camera-section {
         height: 100svh; /* Giữ cố định chiều cao màn hình */
         display: flex;
         flex-direction: column;
@@ -230,17 +228,42 @@ body {
         gap: 0; /* Triệt tiêu mọi khoảng hở mặc định */
         
     }
-
+    body.square .content,body.square #camera-section {
+         /* Giữ cố định chiều cao màn hình */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start !important; /* Quan trọng: Xếp từ đỉnh xuống, không dãn cách */
+        align-items: center;
+        padding: 10px 0;
+        gap: 0; /* Triệt tiêu mọi khoảng hở mặc định */
+        transform: scale(0.6);
+    }
+    body.square #edit-section{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start !important; /* Quan trọng: Xếp từ đỉnh xuống, không dãn cách */
+        align-items: center;
+        padding: 10px 0;
+        gap: 0; /* Triệt tiêu mọi khoảng hở mặc định */
+        transform: scale(1.3);
+    }
     /* Fix màn hình Chụp (Camera) */
-    #camera-wrapper {
+    body.portrait #camera-wrapper {
         position: relative;
          /* Thu nhỏ cả cụm */
         transform-origin: center;
         bottom: 100px;
         transform: scale(0.6);
     }
+    body.square #camera-wrapper {
+        position: relative;
+         /* Thu nhỏ cả cụm */
+        transform-origin: center;
+        bottom: 100px;
+        
+    }
 
-    #captureButton {
+    body.portrait #captureButton {
         position: relative !important;
         z-index: 100 !important;
         top: auto !important;
@@ -255,7 +278,21 @@ body {
         justify-content: center;
         bottom: 70%;
     }
-
+    body.square #captureButton {
+        position: relative !important;
+        z-index: 100 !important;
+        top: auto !important;
+        left: auto !important;
+        
+        /* Thu nhỏ nút và đảm bảo nó hiện ra */
+        transform: scale(1.2) !important;
+        
+        /* Khoảng cách 20px mong muốn */
+        margin-top: 0 !important;
+        display: flex !important;
+        justify-content: center;
+        bottom: 1px;
+    }
     /* Fix màn hình Edit (Xóa bỏ "khúc ngắt" dư thừa) */
     #editcanvas {
         /* Tự động co giãn để lấp đầy khoảng trống ở giữa */
@@ -293,7 +330,7 @@ body {
         top: auto !important;
         left: auto !important;
         transform: none !important;
-        padding-bottom: 30px; /* Khoảng cách an toàn với đáy màn hình */
+        bottom: -20px; /* Khoảng cách an toàn với đáy màn hình */
     }
 
     #printBtn, #ResetBtn, #homeBtn {
@@ -319,7 +356,7 @@ body {
 
 /* Desktop: min-width 992px and max-width 1200px */
 @media (min-width: 551px) and (max-width: 1200px) {
-    .content, #edit-section, #camera-section {
+    body.portrait .content, body.portrait #edit-section,body.portrait #camera-section {
         height: 100svh; /* Giữ cố định chiều cao màn hình */
         display: flex;
         flex-direction: column;
@@ -329,16 +366,38 @@ body {
         gap: 0; /* Triệt tiêu mọi khoảng hở mặc định */
     }
 
-    /* Fix màn hình Chụp (Camera) */
-    #camera-wrapper {
+    body.square .content,body.square #camera-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start !important; /* Quan trọng: Xếp từ đỉnh xuống, không dãn cách */
+        align-items: center;
+        padding: 10px 0;
+        gap: 0; /* Triệt tiêu mọi khoảng hở mặc định */
+        transform: scale(0.8);
+    }
+    body.square #edit-section{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start !important; /* Quan trọng: Xếp từ đỉnh xuống, không dãn cách */
+        align-items: center;
+        padding: 10px 0;
+        gap: 0; /* Triệt tiêu mọi khoảng hở mặc định */
+        transform: scale(1.3);
+    }
+    body.portrait #camera-wrapper {
         position: relative;
         transform: scale(0.6); /* Thu nhỏ cả cụm */
         transform-origin: center;
         bottom: 100px;
-
     }
-
-    #captureButton {
+    /* Fix màn hình Chụp (Camera) */
+    body.square #camera-wrapper {
+        position: relative;
+        transform: scale(0.7); /* Thu nhỏ cả cụm */
+        transform-origin: center;
+        bottom: 100px;
+    }
+    body.portrait #captureButton {
         position: relative !important;
         z-index: 100 !important;
         top: auto !important;
@@ -352,6 +411,22 @@ body {
         display: flex !important;
         justify-content: center;
         bottom: 50%;
+    }
+
+    body.square #captureButton {
+        position: relative !important;
+        z-index: 100 !important;
+        top: auto !important;
+        left: auto !important;
+        
+        /* Thu nhỏ nút và đảm bảo nó hiện ra */
+        transform: scale(0.8) !important;
+        
+        /* Khoảng cách 20px mong muốn */
+        margin-top: 0 !important;
+        display: flex !important;
+        justify-content: center;
+        bottom: 120px;
     }
 
     /* Fix màn hình Edit (Xóa bỏ "khúc ngắt" dư thừa) */
@@ -391,7 +466,8 @@ body {
         top: auto !important;
         left: auto !important;
         transform: none !important;
-        padding-bottom: 30px; /* Khoảng cách an toàn với đáy màn hình */
+        bottom: -20px;
+        
     }
 
     #printBtn, #ResetBtn, #homeBtn {
@@ -432,9 +508,8 @@ body {
         position: relative;
         transform: scale(0.6); /* Thu nhỏ cả cụm */
         transform-origin: center;
-        bottom: 100px;
+        bottom: 50px;
     }
-
     #captureButton {
         position: relative !important;
         z-index: 100 !important;
@@ -448,7 +523,7 @@ body {
         margin-top: 0 !important;
         display: flex !important;
         justify-content: center;
-        bottom: 50%;
+        bottom: 80%;
     }
 
     /* Fix màn hình Edit (Xóa bỏ "khúc ngắt" dư thừa) */
@@ -488,7 +563,7 @@ body {
         top: auto !important;
         left: auto !important;
         transform: none !important;
-        padding-bottom: 30px; /* Khoảng cách an toàn với đáy màn hình */
+        bottom: -20px; /* Khoảng cách an toàn với đáy màn hình */
     }
 
     #printBtn, #ResetBtn, #homeBtn {
@@ -496,9 +571,14 @@ body {
         padding: 10px 20px !important;
         margin: 0 !important;
     }
-    .icon-sticker-menu{
+    body.portrait .icon-sticker-menu{
         transform: scale(0.8);
         top: auto;
         left: 60%;
+    }
+    body.square .icon-sticker-menu{
+        transform: scale(0.8);
+        top: auto;
+        left: 100%;
     }
 }

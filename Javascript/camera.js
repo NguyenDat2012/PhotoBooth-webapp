@@ -28,21 +28,18 @@ if(datatype ==  'portrait'){
     cameraWrapper.style.height = 900 + 'px';
     editcanvas.style.width = 295 + 'px';
     editcanvas.style.height = 900 + 'px';
-    canvas.style.width = 295 + 'px';
-    canvas.style.height = 900 + 'px';
     gap= 180;
 }else{
     CANVAS_WIDTH = 880;
     CANVAS_HEIGHT = 800;
     camera_width = 400;
-    camera_height = 300;
+    camera_height = 279;
     cameraWrapper.style.width = 880+ 'px';
-    cameraWrapper.style.height = 800 + 'px';
+    cameraWrapper.style.height = 750 + 'px';
     editcanvas.style.width = 880 + 'px';
-    editcanvas.style.height = 800 + 'px';
-    canvas.style.width = 880 + 'px';
-    canvas.style.height = 750 + 'px';
-    gap= 280;
+    editcanvas.style.height = 750 + 'px';
+    gapY= 280;
+    gapX = 420;
 }
 
 function loadFrameFromUrl() {
@@ -100,7 +97,7 @@ function capturePhoto() {
     const vDisplayWidth = camera_width;
     const vDisplayHeight = camera_height;
     const vDisplayLeft = video.offsetLeft;
-    let vDisplayTop = video.offsetTop;
+    const vDisplayTop = video.offsetTop;
 
     if (total === 0) {
         canvas.width = CANVAS_WIDTH;
@@ -120,17 +117,30 @@ function capturePhoto() {
 
     total++;
     if (total < totalFrames) {
-        moveCameraToNextFrame(vDisplayTop);
+        moveCameraToNextFrame(vDisplayTop,vDisplayLeft,total,datatype);
     } else {
         setTimeout(() => {
             finalizeStrip();
         }, 100);
     }
 }
-function moveCameraToNextFrame(currentTop) {
+function moveCameraToNextFrame(currentTop,currentLeft,total,data_type) {
     // Di chuyển video preview xuống ô tiếp theo
+    if(data_type == 'portrait'){
     const nextY = currentTop + gap; 
     video.style.top = nextY + "px";
+    }else{
+        if(total==1){
+            const nextX = currentLeft + gapX; 
+            video.style.left = nextX + "px";
+        }else if(total==2){
+            const nextY = currentTop + gapY; 
+            video.style.top = nextY + "px";
+        }else if(total==3){
+            const nextX = currentLeft - gapX; 
+            video.style.left = nextX + "px";
+        }
+    }
 }
 
 function finalizeStrip() {
