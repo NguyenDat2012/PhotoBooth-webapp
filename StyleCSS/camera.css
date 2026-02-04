@@ -57,9 +57,21 @@ body {
     z-index: 4;
 }
 
-#video {
+body.portrait #video {
     position: absolute;
-    
+    width: 245px;
+    height: 182px;
+    left: 25px;
+    top: 40px;
+    z-index: 2;
+    border-radius: 10px;
+    object-fit: cover;
+    transform: scaleX(-1);
+}
+body.square #video {
+    position: absolute;
+    width: 400px;
+    height: 279px;
     left: 25px;
     top: 40px;
     z-index: 2;
@@ -508,7 +520,7 @@ body {
         position: relative;
         transform: scale(0.6); /* Thu nhỏ cả cụm */
         transform-origin: center;
-        bottom: 50px;
+        bottom: 100px;
     }
     #captureButton {
         position: relative !important;

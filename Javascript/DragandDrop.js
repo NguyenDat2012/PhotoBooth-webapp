@@ -3,9 +3,12 @@ let selectedSticker = null;
 let isDragging = false;
 let offsetX, offsetY;
 let tempBackground = null;
+let scaleX, scaleY;
+
 
 const editCanvas = document.getElementById('photoCanvas');
 const editCtx = editCanvas ? editCanvas.getContext('2d') : null;
+
 
 function startEditingSystem() {
     if (!editCanvas || !editCtx) return;
@@ -42,8 +45,8 @@ function setupInteraction() {
         const clientY = e.touches ? e.touches[0].clientY : e.clientY;
         // Tỉ lệ chuẩn hóa tọa độ khi có transform: scale()
         return {
-            x: (clientX - rect.left) * (295 / rect.width),
-            y: (clientY - rect.top) * (900 / rect.height)
+            x: (clientX - rect.left) * (CANVAS_WIDTH / rect.width),
+            y: (clientY - rect.top) * (CANVAS_HEIGHT / rect.height)
         };
     };
 
