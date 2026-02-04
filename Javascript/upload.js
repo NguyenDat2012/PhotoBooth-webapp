@@ -199,10 +199,10 @@ function stopDrag() {
     dragging = false;
     selectedIdx = -1;
 }
-
-canvas.addEventListener('wheel', e => {
+function zoomHandler(e) {
     e.preventDefault();
     const pos = getPos(e);
+
     uploadedPhotos.forEach(p => {
         if (
             pos.x >= p.cropX &&
@@ -214,14 +214,26 @@ canvas.addEventListener('wheel', e => {
             p.scale = Math.max(0.05, p.scale);
         }
     });
+
     renderCanvasAll();
-}, { passive: false });
+}
+canvas.addEventListener('wheel', zoomHandler(e),{ passive: false });
 
 /* ================== EDIT ================== */
 function finalizeToEdit() {
     document.getElementById('camera-section').style.display = 'none';
     document.getElementById('edit-section').style.display = 'flex';
     document.getElementById('editcanvas').appendChild(canvas);
+    canvas.removeEventListener('mousedown', startDrag);
+    canvas.removeEventListener('touchstart', startDrag);
+
+    window.removeEventListener('mousemove', moveDrag);
+    window.removeEventListener('touchmove', moveDrag);
+
+    window.removeEventListener('mouseup', stopDrag);
+    window.removeEventListener('touchend', stopDrag);
+
+    canvas.removeEventListener('wheel', zoomHandler);
 
     if (typeof startEditingSystem === 'function') {
         startEditingSystem();
