@@ -25,9 +25,7 @@ if(datatype ==  'portrait'){
     camera_width = 245;
     camera_height = 182;
     cameraWrapper.style.width = 295 + 'px';
-    cameraWrapper.style.height = 900 + 'px';
-    editcanvas.style.width = 295 + 'px';
-    editcanvas.style.height = 900 + 'px';
+    cameraWrapper.style.height = 900 + 'px';  
     gap= 180;
 }else{
     CANVAS_WIDTH = 880;
@@ -36,8 +34,6 @@ if(datatype ==  'portrait'){
     camera_height = 279;
     cameraWrapper.style.width = 880+ 'px';
     cameraWrapper.style.height = 750 + 'px';
-    editcanvas.style.width = 880 + 'px';
-    editcanvas.style.height = 750 + 'px';
     gapY= 280;
     gapX = 420;
 }

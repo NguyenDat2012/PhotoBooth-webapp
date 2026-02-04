@@ -49,11 +49,20 @@ body {
     transform-origin: center center;
 }
 
-#photoCanvas {
+body.portrait #photoCanvas {
     position: absolute;
     top: 0;
     left: 0;
-
+    width: 245px;
+    height: 182px;
+    z-index: 4;
+}
+body.square #photoCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 400px;
+    height: 279px;
     z-index: 4;
 }
 
