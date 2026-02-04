@@ -90,23 +90,19 @@ function capturePhoto() {
     const vDisplayWidth = camera_width;
     const vDisplayHeight = camera_height;
 
-    // LẤY VỊ TRÍ VIDEO CHUẨN (KHÔNG DÙNG offset)
-    const vRect = video.getBoundingClientRect();
-    const cRect = canvas.getBoundingClientRect();
-
-    const vDisplayLeft = vRect.left - cRect.left;
-    const vDisplayTop  = vRect.top  - cRect.top;
+    // GIỮ NGUYÊN VỊ TRÍ CŨ
+    const vDisplayLeft = video.offsetLeft;
+    const vDisplayTop  = video.offsetTop;
 
     if (total === 0) {
         canvas.width = CANVAS_WIDTH;
         canvas.height = CANVAS_HEIGHT;
     }
 
-    // ====== PHẦN QUAN TRỌNG NHẤT ======
+    // ===== FIX CỐT LÕI: KHÔNG ZOOM / KHÔNG MÉO =====
     const vw = video.videoWidth;
     const vh = video.videoHeight;
 
-    // cover giống object-fit: cover
     const scale = Math.max(
         vDisplayWidth / vw,
         vDisplayHeight / vh
@@ -118,7 +114,6 @@ function capturePhoto() {
     const sx = (vw - sw) / 2;
     const sy = (vh - sh) / 2;
 
-    // ====== VẼ CAMERA ======
     ctx.save();
 
     // mirror
@@ -127,13 +122,12 @@ function capturePhoto() {
 
     ctx.drawImage(
         video,
-        sx, sy, sw, sh,          // CROP VIDEO GỐC (QUAN TRỌNG)
+        sx, sy, sw, sh,                  // crop video gốc
         0, 0, vDisplayWidth, vDisplayHeight
     );
 
     ctx.restore();
 
-    // ====== LOGIC STRIP GIỮ NGUYÊN ======
     total++;
     if (total < totalFrames) {
         moveCameraToNextFrame(vDisplayTop, vDisplayLeft, total, datatype);
@@ -143,6 +137,7 @@ function capturePhoto() {
         }, 100);
     }
 }
+
 
 
 /*function capturePhoto() {
