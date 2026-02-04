@@ -83,9 +83,69 @@ async function setupCamera() {
     }
 }
 
-
-
 function capturePhoto() {
+    const canvas = document.getElementById('photoCanvas');
+    const ctx = canvas.getContext('2d');
+
+    const vDisplayWidth = camera_width;
+    const vDisplayHeight = camera_height;
+
+    // LẤY VỊ TRÍ VIDEO CHUẨN (KHÔNG DÙNG offset)
+    const vRect = video.getBoundingClientRect();
+    const cRect = canvas.getBoundingClientRect();
+
+    const vDisplayLeft = vRect.left - cRect.left;
+    const vDisplayTop  = vRect.top  - cRect.top;
+
+    if (total === 0) {
+        canvas.width = CANVAS_WIDTH;
+        canvas.height = CANVAS_HEIGHT;
+    }
+
+    // ====== PHẦN QUAN TRỌNG NHẤT ======
+    const vw = video.videoWidth;
+    const vh = video.videoHeight;
+
+    // cover giống object-fit: cover
+    const scale = Math.max(
+        vDisplayWidth / vw,
+        vDisplayHeight / vh
+    );
+
+    const sw = vDisplayWidth / scale;
+    const sh = vDisplayHeight / scale;
+
+    const sx = (vw - sw) / 2;
+    const sy = (vh - sh) / 2;
+
+    // ====== VẼ CAMERA ======
+    ctx.save();
+
+    // mirror
+    ctx.translate(vDisplayLeft + vDisplayWidth, vDisplayTop);
+    ctx.scale(-1, 1);
+
+    ctx.drawImage(
+        video,
+        sx, sy, sw, sh,          // CROP VIDEO GỐC (QUAN TRỌNG)
+        0, 0, vDisplayWidth, vDisplayHeight
+    );
+
+    ctx.restore();
+
+    // ====== LOGIC STRIP GIỮ NGUYÊN ======
+    total++;
+    if (total < totalFrames) {
+        moveCameraToNextFrame(vDisplayTop, vDisplayLeft, total, datatype);
+    } else {
+        setTimeout(() => {
+            finalizeStrip();
+        }, 100);
+    }
+}
+
+
+/*function capturePhoto() {
     const canvas = document.getElementById('photoCanvas');
     const ctx = canvas.getContext('2d');
     
@@ -97,7 +157,7 @@ function capturePhoto() {
 
     if (total == 0) {
         canvas.width = CANVAS_WIDTH;
-        canvas.height = CANVAS_HEIGHT;
+        canvas.style.height = CANVAS_HEIGHT;
     }
     // 2. Vẽ lên Canvas
     ctx.save();
@@ -119,7 +179,7 @@ function capturePhoto() {
             finalizeStrip();
         }, 100);
     }
-}
+}*/
 function moveCameraToNextFrame(currentTop,currentLeft,total,data_type) {
     // Di chuyển video preview xuống ô tiếp theo
     if(data_type == 'portrait'){
