@@ -595,7 +595,7 @@ body.square #video {
     body.portrait .icon-sticker-menu{
         transform: scale(0.8);
         top: auto;
-        left: 60%;
+        left: 70%;
     }
     body.square .icon-sticker-menu{
         transform: scale(0.8);

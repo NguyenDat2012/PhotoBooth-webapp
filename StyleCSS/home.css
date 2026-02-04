@@ -133,5 +133,6 @@ button:active {
      }
     .button-container {
         bottom: 13%;
+        transform: scale(0.8);
     }
 }
