@@ -95,7 +95,7 @@ function capturePhoto() {
     const vDisplayLeft = video.offsetLeft;
     const vDisplayTop = video.offsetTop;
 
-    if (total === 0) {
+    if (total == 0) {
         canvas.width = CANVAS_WIDTH;
         canvas.height = CANVAS_HEIGHT;
     }
@@ -105,7 +105,7 @@ function capturePhoto() {
     ctx.scale(-1, 1); // Hiệu ứng lật gương
 
     ctx.drawImage(
-        video,           // CẮT phần giữa của video theo tỉ lệ ô chứa
+        video,           
         0, 0, vDisplayWidth, vDisplayHeight // VẼ vào đúng kích thước ô chứa
     );
     ctx.restore();
