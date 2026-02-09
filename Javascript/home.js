@@ -19,9 +19,18 @@ function addSafeNavigation(button, url, id) {
     }
 
     e.preventDefault();
+    
     setTimeout(() => (window.location.href = url), 100);
   });
 }
 // Thêm tham số mode vào sau URL
 addSafeNavigation(btnTakephoto, "select-Frame.html?mode=camera", "take-photo-btn");
 addSafeNavigation(btnUploadphoto, "select-Frame.html?mode=upload", "upload-photo-btn");
+
+const bgMusic = document.getElementById("bgMusic");
+
+document.addEventListener("click", function enableSound() {
+  bgMusic.muted = false;
+  bgMusic.play();
+  document.removeEventListener("click", enableSound);
+});

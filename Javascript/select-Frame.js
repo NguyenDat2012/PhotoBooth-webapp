@@ -1,5 +1,6 @@
 const btnnext = document.querySelector('.swiper-button-next');
 const btnprev = document.querySelector('.swiper-button-prev');
+
 // 1. Hàm lấy tham số mode từ URL
 const urlParams = new URLSearchParams(window.location.search);
 const currentMode = urlParams.get('mode');
