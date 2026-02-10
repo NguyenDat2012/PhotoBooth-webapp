@@ -113,7 +113,9 @@ button:hover {
 }
 
 button:active {
-    transform: scale(0.95);
+    padding-bottom: 0;
+    margin-bottom: 8px;     /* Bù trừ padding để không bị nhảy layout */
+    transform: translateY(8px);
 }
 @media (max-width: 1280px){
     .title-img { width: 70%; }

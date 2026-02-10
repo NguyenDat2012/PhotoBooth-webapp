@@ -93,15 +93,23 @@ body.square #video {
     position: absolute;
     top: 0;
     left: 0;
-    
     z-index: 5;
     pointer-events: none;
 }
 
-.button-group {
+button {
     position: relative;
-}
 
+}
+button:hover{
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+button:active{
+    padding-bottom: 0;
+    margin-bottom: 8px;     
+    transform: translateY(8px);
+}
 #captureButton {
     position: absolute !important;
     top: 88%;
@@ -274,7 +282,7 @@ body.square #video {
          /* Thu nhỏ cả cụm */
         transform-origin: center;
         bottom: 100px;
-        transform: scale(0.6);
+        transform: scale(0.5);
     }
     body.square #camera-wrapper {
         position: relative;
@@ -291,13 +299,13 @@ body.square #video {
         left: auto !important;
         
         /* Thu nhỏ nút và đảm bảo nó hiện ra */
-        transform: scale(0.7) !important;
+        transform: scale(0.6) !important;
         
         /* Khoảng cách 20px mong muốn */
         margin-top: 0 !important;
         display: flex !important;
         justify-content: center;
-        bottom: 70%;
+        bottom: 60%;
     }
     body.square #captureButton {
         position: relative !important;
@@ -510,10 +518,9 @@ body.square #video {
         width: 95%;
         z-index: 100;
     }
-
    
 }
-@media (min-width: 1201px) {
+@media (min-width: 1201px) and (max-width: 1500px) {
     .content, #edit-section, #camera-section {
         height: 100svh; /* Giữ cố định chiều cao màn hình */
         display: flex;
