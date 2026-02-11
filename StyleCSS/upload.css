@@ -230,7 +230,7 @@ body.square #photoCanvas {
          /* Thu nhỏ cả cụm */
         transform-origin: center;
         bottom: 100px;
-        transform: scale(0.6);
+        transform: scale(0.5);
     }
     body.square #camera-wrapper {
         position: relative;
@@ -247,7 +247,7 @@ body.square #photoCanvas {
         left: auto !important;
         
         /* Thu nhỏ nút và đảm bảo nó hiện ra */
-        transform: scale(0.7) !important;
+        transform: scale(0.6) !important;
         
         /* Khoảng cách 20px mong muốn */
         margin-top: 0 !important;
