@@ -147,7 +147,12 @@ fileInput.onchange = e => {
             });
 
             renderCanvasAll();
-            if (uploadedPhotos.length === totalFrames) finalizeToEdit();
+            if(uploadedPhotos.length == totalFrames){
+                uploadButton.style.display = 'none';
+                const completeButton = document.getElementById('completeButton');
+                completeButton.style.display = 'block';
+                completeButton.onclick = finalizeToEdit;
+            }
         };
         img.src = ev.target.result;
     };
@@ -217,7 +222,8 @@ function zoomHandler(e) {
 
     renderCanvasAll();
 }
-canvas.addEventListener('wheel', zoomHandler(e),{ passive: false });
+canvas.addEventListener('wheel', zoomHandler,{ passive: false });
+
 
 /* ================== EDIT ================== */
 function finalizeToEdit() {

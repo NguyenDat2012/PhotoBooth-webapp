@@ -77,9 +77,11 @@ body.square #photoCanvas {
 .button-group {
     position: relative;
 }
-
-#uploadButton {
-    position: absolute !important;
+#completeButton{
+    display: none;
+}
+#uploadButton,#completeButton {
+    position: absolute;
     top: 88%;
     left: 48%;
     z-index: 15;
@@ -90,7 +92,7 @@ body.square #photoCanvas {
     color: #9f1c1c;
     font-family: 'Brush Script MT', cursive;
     font-size: 2.2rem;
-    padding: 8px 36px;
+    padding: 8px 20px;
     cursor: pointer;
 }
 
@@ -240,8 +242,8 @@ body.square #photoCanvas {
         
     }
 
-    body.portrait #uploadButton {
-        position: relative !important;
+    body.portrait #uploadButton,body.portrait #completeButton {
+        position: relative;
         z-index: 100 !important;
         top: auto !important;
         left: auto !important;
@@ -251,12 +253,12 @@ body.square #photoCanvas {
         
         /* Khoảng cách 20px mong muốn */
         margin-top: 0 !important;
-        display: flex !important;
+        
         justify-content: center;
         bottom: 70%;
     }
-    body.square #captureButton {
-        position: relative !important;
+    body.square #uploadButton, body.square #completeButton {
+        position: relative;
         z-index: 100 !important;
         top: auto !important;
         left: auto !important;
@@ -266,7 +268,7 @@ body.square #photoCanvas {
         
         /* Khoảng cách 20px mong muốn */
         margin-top: 0 !important;
-        display: flex !important;
+        
         justify-content: center;
         bottom: 1px;
     }
@@ -374,8 +376,8 @@ body.square #photoCanvas {
         transform-origin: center;
         bottom: 100px;
     }
-    body.portrait #uploadButton {
-        position: relative !important;
+    body.portrait #uploadButton,body.portrait #completeButton {
+        position: relative;
         z-index: 100 !important;
         top: auto !important;
         left: auto !important;
@@ -385,13 +387,13 @@ body.square #photoCanvas {
         
         /* Khoảng cách 20px mong muốn */
         margin-top: 0 !important;
-        display: flex !important;
+        
         justify-content: center;
         bottom: 50%;
     }
 
-    body.square #captureButton {
-        position: relative !important;
+    body.square #uploadButton,body.square #completeButton {
+        position: relative;
         z-index: 100 !important;
         top: auto !important;
         left: auto !important;
@@ -401,7 +403,7 @@ body.square #photoCanvas {
         
         /* Khoảng cách 20px mong muốn */
         margin-top: 0 !important;
-        display: flex !important;
+        
         justify-content: center;
         bottom: 120px;
     }
@@ -486,8 +488,8 @@ body.square #photoCanvas {
         transform-origin: center;
         bottom: 100px;
     }
-    #uploadButton {
-        position: relative !important;
+    #uploadButton, #completeButton {
+        position: relative;
         z-index: 100 !important;
         top: auto !important;
         left: auto !important;
@@ -497,7 +499,7 @@ body.square #photoCanvas {
         
         /* Khoảng cách 20px mong muốn */
         margin-top: 0 !important;
-        display: flex !important;
+        
         justify-content: center;
         bottom: 70%;
     }

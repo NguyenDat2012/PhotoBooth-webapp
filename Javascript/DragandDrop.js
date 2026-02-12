@@ -81,13 +81,39 @@ document.getElementById('ResetBtn').onclick = () => {
     stickersInCanvas.length = 0;
     renderCanvas();
 };
-
 document.getElementById('printBtn').onclick = () => {
+    const canvas = document.getElementById('photoCanvas');
+
+    canvas.toBlob(blob => {
+        const url = URL.createObjectURL(blob);
+
+        // Detect Messenger / Zalo in-app browser
+        const ua = navigator.userAgent || navigator.vendor;
+        const isInApp = /FBAN|FBAV|Zalo/i.test(ua);
+
+        if (isInApp) {
+            // Mở ảnh để người dùng nhấn giữ lưu
+            window.open(url, '_blank');
+        } else {
+            // Trình duyệt bình thường (PC + Mobile Chrome/Safari)
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Tet_2026.png';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }, 'image/png');
+};
+
+/*document.getElementById('printBtn').onclick = () => {
     const link = document.createElement('a');
     link.href = editCanvas.toDataURL();
     link.download = 'Tet_2026.png';
     link.click();
-};
+};*/
 
 document.getElementById('homeBtn').onclick = () => {
     setTimeout(() => (window.location.href = 'index.html'), 100);

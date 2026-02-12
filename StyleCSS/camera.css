@@ -110,8 +110,11 @@ button:active{
     margin-bottom: 8px;     
     transform: translateY(8px);
 }
-#captureButton {
-    position: absolute !important;
+#completeButton {
+    display: none ;
+}
+#captureButton, #completeButton {
+    position: absolute ;
     top: 88%;
     left: 48%;
     z-index: 15;
@@ -261,7 +264,7 @@ button:active{
          /* Giữ cố định chiều cao màn hình */
         display: flex;
         flex-direction: column;
-        justify-content: flex-start !important; /* Quan trọng: Xếp từ đỉnh xuống, không dãn cách */
+        justify-content: flex-start; /* Quan trọng: Xếp từ đỉnh xuống, không dãn cách */
         align-items: center;
         padding: 10px 0;
         gap: 0; /* Triệt tiêu mọi khoảng hở mặc định */
@@ -292,33 +295,33 @@ button:active{
         
     }
 
-    body.portrait #captureButton {
-        position: relative !important;
-        z-index: 100 !important;
-        top: auto !important;
-        left: auto !important;
+    body.portrait #captureButton,body.portrait #completeButton {
+        position: relative ;
+        z-index: 100 ;
+        top: auto ;
+        left: auto ;
         
         /* Thu nhỏ nút và đảm bảo nó hiện ra */
-        transform: scale(0.6) !important;
+        transform: scale(0.6);
         
         /* Khoảng cách 20px mong muốn */
-        margin-top: 0 !important;
-        display: flex !important;
+        margin-top: 0 ;
+        
         justify-content: center;
         bottom: 60%;
     }
-    body.square #captureButton {
-        position: relative !important;
-        z-index: 100 !important;
-        top: auto !important;
-        left: auto !important;
+    body.square #captureButton, body.square #completeButton {
+        position: relative;
+        z-index: 100 ;
+        top: auto ;
+        left: auto;
         
         /* Thu nhỏ nút và đảm bảo nó hiện ra */
-        transform: scale(1.2) !important;
+        transform: scale(1.2) ;
         
         /* Khoảng cách 20px mong muốn */
-        margin-top: 0 !important;
-        display: flex !important;
+        margin-top: 0;
+        
         justify-content: center;
         bottom: 1px;
     }
@@ -394,7 +397,7 @@ button:active{
         padding: 10px 0;
         gap: 0; /* Triệt tiêu mọi khoảng hở mặc định */
     }
-
+    
     body.square .content,body.square #camera-section {
         display: flex;
         flex-direction: column;
@@ -426,7 +429,7 @@ button:active{
         transform-origin: center;
         bottom: 100px;
     }
-    body.portrait #captureButton {
+    body.portrait #captureButton, body.portrait #completeButton {
         position: relative !important;
         z-index: 100 !important;
         top: auto !important;
@@ -437,12 +440,12 @@ button:active{
         
         /* Khoảng cách 20px mong muốn */
         margin-top: 0 !important;
-        display: flex !important;
+        
         justify-content: center;
         bottom: 50%;
     }
 
-    body.square #captureButton {
+    body.square #captureButton, body.square #completeButton {
         position: relative !important;
         z-index: 100 !important;
         top: auto !important;
@@ -453,7 +456,7 @@ button:active{
         
         /* Khoảng cách 20px mong muốn */
         margin-top: 0 !important;
-        display: flex !important;
+        
         justify-content: center;
         bottom: 120px;
     }
@@ -538,7 +541,7 @@ button:active{
         transform-origin: center;
         bottom: 100px;
     }
-    #captureButton {
+    #captureButton, #completeButton {
         position: relative !important;
         z-index: 100 !important;
         top: auto !important;
@@ -549,7 +552,7 @@ button:active{
         
         /* Khoảng cách 20px mong muốn */
         margin-top: 0 !important;
-        display: flex !important;
+        
         justify-content: center;
         bottom: 80%;
     }

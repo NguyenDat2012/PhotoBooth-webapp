@@ -132,9 +132,11 @@ function capturePhoto() {
     if (total < totalFrames) {
         moveCameraToNextFrame(vDisplayTop, vDisplayLeft, total, datatype);
     } else {
-        setTimeout(() => {
-            finalizeStrip();
-        }, 100);
+
+        const completeButton = document.getElementById('completeButton');
+        completeButton.style.display = 'block';
+        btncapture.style.display = 'none';
+        completeButton.addEventListener('click',finalizeStrip);
     }
 }
 
@@ -201,7 +203,6 @@ function finalizeStrip() {
         renderCanvasAll();
     }
         ctx.drawImage(overlayFrame, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-        
     }
 
     // 2. Dừng Camera để giải phóng tài nguyên
@@ -220,9 +221,6 @@ function finalizeStrip() {
 
     startEditingSystem();
 }
-// Giữ nguyên các hàm bổ trợ của bạn
-
-
 
 const startCountDown = (callback) => {
     let count = 3;
