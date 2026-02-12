@@ -48,7 +48,7 @@ body {
     transform-origin: center center;
 }
 
-body.portrait #photoCanvas {
+body.vertical #photoCanvas {
     position: absolute;
     top: 0;
     left: 0;
@@ -206,7 +206,7 @@ button:active {
 }
 @media (max-width: 550px) {
     /* Thiết lập khung sườn: Đẩy Sticker lên đỉnh, Nút xuống đáy */
-    body.portrait .content,body.portrait #edit-section,body.portrait #camera-section {
+    body.vertical .content,body.vertical #edit-section,body.vertical #camera-section {
         height: 100svh; /* Giữ cố định chiều cao màn hình */
         display: flex;
         flex-direction: column;
@@ -236,7 +236,7 @@ button:active {
         transform: scale(1.3);
     }
     /* Fix màn hình Chụp (Camera) */
-    body.portrait #camera-wrapper {
+    body.vertical #camera-wrapper {
         position: relative;
          /* Thu nhỏ cả cụm */
         transform-origin: center;
@@ -251,7 +251,7 @@ button:active {
         
     }
 
-    body.portrait #uploadButton,body.portrait #completeButton {
+    body.vertical #uploadButton,body.vertical #completeButton {
         position: relative;
         z-index: 100 !important;
         top: auto !important;
@@ -344,7 +344,7 @@ button:active {
 
 /* Desktop: min-width 992px and max-width 1200px */
 @media (min-width: 551px) and (max-width: 1200px) {
-    body.portrait .content, body.portrait #edit-section,body.portrait #camera-section {
+    body.vertical .content, body.vertical #edit-section,body.vertical #camera-section {
         height: 100svh; /* Giữ cố định chiều cao màn hình */
         display: flex;
         flex-direction: column;
@@ -372,7 +372,7 @@ button:active {
         gap: 0; /* Triệt tiêu mọi khoảng hở mặc định */
         transform: scale(1.3);
     }
-    body.portrait #camera-wrapper {
+    body.vertical #camera-wrapper {
         position: relative;
         transform: scale(0.6); /* Thu nhỏ cả cụm */
         transform-origin: center;
@@ -385,7 +385,7 @@ button:active {
         transform-origin: center;
         bottom: 100px;
     }
-    body.portrait #uploadButton,body.portrait #completeButton {
+    body.vertical #uploadButton,body.vertical #completeButton {
         position: relative;
         z-index: 100 !important;
         top: auto !important;
@@ -558,7 +558,7 @@ button:active {
         padding: 10px 20px !important;
         margin: 0 !important;
     }
-    body.portrait .icon-sticker-menu{
+    body.vertical .icon-sticker-menu{
         transform: scale(0.8);
         top: auto;
         left: 70%;
