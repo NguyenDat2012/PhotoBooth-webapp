@@ -92,8 +92,7 @@ document.getElementById('printBtn').onclick = () => {
         const isInApp = /FBAN|FBAV|Zalo/i.test(ua);
 
         if (isInApp) {
-            // Mở ảnh để người dùng nhấn giữ lưu
-            window.open(url, '_blank');
+            window.location.href = url;
         } else {
             // Trình duyệt bình thường (PC + Mobile Chrome/Safari)
             const a = document.createElement('a');
