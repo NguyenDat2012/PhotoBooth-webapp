@@ -69,7 +69,6 @@ body.square #photoCanvas {
     position: absolute;
     top: 0;
     left: 0;
-    
     z-index: 5;
     pointer-events: none;
 }
@@ -180,6 +179,16 @@ body.square #photoCanvas {
     padding: 8px 20px;
     cursor: pointer;
     /* Xóa bỏ hoàn toàn top, left, transform cũ ở đây */
+}
+button:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+button:active {
+    padding-bottom: 0;
+    margin-bottom: 8px;     /* Bù trừ padding để không bị nhảy layout */
+    transform: translateY(8px);
 }
 /* Thẻ chứa Canvas mới của bạn */
 #editcanvas {

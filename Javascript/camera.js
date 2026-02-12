@@ -19,10 +19,10 @@ const totalFrames = 4;
 let CANVAS_WIDTH, CANVAS_HEIGHT;
 let camera_width, camera_height;
 
-if(datatype ==  'portrait'){
+if(datatype ==  'vertical'){
     CANVAS_WIDTH = 295;
     CANVAS_HEIGHT = 900;
-    camera_width = 245;
+    camera_width = 265;
     camera_height = 182;
     cameraWrapper.style.width = 295 + 'px';
     cameraWrapper.style.height = 900 + 'px';  
@@ -30,12 +30,12 @@ if(datatype ==  'portrait'){
 }else{
     CANVAS_WIDTH = 880;
     CANVAS_HEIGHT = 800;
-    camera_width = 400;
-    camera_height = 279;
+    camera_width = 403;
+    camera_height = 283;
     cameraWrapper.style.width = 880+ 'px';
     cameraWrapper.style.height = 750 + 'px';
-    gapY= 280;
-    gapX = 420;
+    gapY= 295;
+    gapX = 428;
 }
 
 function loadFrameFromUrl() {
@@ -58,8 +58,8 @@ async function setupCamera() {
     const constraints = {
         video: { 
             facingMode: "user",
-            width: { ideal: datatype === 'portrait' ? 245 : 400 },
-            height: { ideal: datatype === 'portrait' ? 182 : 279 }
+            width: { ideal: datatype === 'vertical' ? 265 : 403 },
+            height: { ideal: datatype === 'vertical' ? 182 : 283 }
         },
         audio: false
     };
@@ -139,47 +139,9 @@ function capturePhoto() {
         completeButton.addEventListener('click',finalizeStrip);
     }
 }
-
-
-
-/*function capturePhoto() {
-    const canvas = document.getElementById('photoCanvas');
-    const ctx = canvas.getContext('2d');
-    
-     
-    const vDisplayWidth = camera_width;
-    const vDisplayHeight = camera_height;
-    const vDisplayLeft = video.offsetLeft;
-    const vDisplayTop = video.offsetTop;
-
-    if (total == 0) {
-        canvas.width = CANVAS_WIDTH;
-        canvas.style.height = CANVAS_HEIGHT;
-    }
-    // 2. Vẽ lên Canvas
-    ctx.save();
-    ctx.translate(vDisplayLeft + vDisplayWidth, vDisplayTop);
-    ctx.scale(-1, 1); // Hiệu ứng lật gương
-
-    ctx.drawImage(
-        video,           
-        0, 0, vDisplayWidth, vDisplayHeight // VẼ vào đúng kích thước ô chứa
-    );
-    ctx.restore();
-    
-
-    total++;
-    if (total < totalFrames) {
-        moveCameraToNextFrame(vDisplayTop,vDisplayLeft,total,datatype);
-    } else {
-        setTimeout(() => {
-            finalizeStrip();
-        }, 100);
-    }
-}*/
 function moveCameraToNextFrame(currentTop,currentLeft,total,data_type) {
     // Di chuyển video preview xuống ô tiếp theo
-    if(data_type == 'portrait'){
+    if(data_type == 'vertical'){
     const nextY = currentTop + gap; 
     video.style.top = nextY + "px";
     }else{

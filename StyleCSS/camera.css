@@ -68,10 +68,10 @@ body.square #photoCanvas {
 
 body.portrait #video {
     position: absolute;
-    width: 245px;
+    width: 265px;
     height: 182px;
-    left: 25px;
-    top: 40px;
+    left: 13px;
+    top: 38px;
     z-index: 2;
     border-radius: 10px;
     object-fit: cover;
@@ -79,10 +79,10 @@ body.portrait #video {
 }
 body.square #video {
     position: absolute;
-    width: 400px;
-    height: 279px;
+    width: 403px;
+    height: 283px;
     left: 25px;
-    top: 40px;
+    top: 33px;
     z-index: 2;
     border-radius: 10px;
     object-fit: cover;
@@ -225,6 +225,16 @@ button:active{
     padding: 8px 20px;
     cursor: pointer;
     /* Xóa bỏ hoàn toàn top, left, transform cũ ở đây */
+}
+button:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+button:active {
+    padding-bottom: 0;
+    margin-bottom: 8px;     /* Bù trừ padding để không bị nhảy layout */
+    transform: translateY(8px);
 }
 
 /* Thẻ chứa Canvas mới của bạn */

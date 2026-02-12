@@ -17,10 +17,10 @@ let camera_width, camera_height;
 let gap = 0, gapX = 0, gapY = 0;
 const totalFrames = 4;
 
-if (datatype === 'portrait') {
+if (datatype === 'vertical') {
     CANVAS_WIDTH = 295;
     CANVAS_HEIGHT = 900;
-    camera_width = 245;
+    camera_width = 265;
     camera_height = 182;
     gap = 180;
 
@@ -29,11 +29,10 @@ if (datatype === 'portrait') {
 } else {
     CANVAS_WIDTH = 880;
     CANVAS_HEIGHT = 800;
-    camera_width = 400;
-    camera_height = 279;
-    gapX = 420;
-    gapY = 280;
-
+    camera_width = 403;
+    camera_height = 283;
+    gapX = 428;
+    gapY = 295;
     cameraWrapper.style.width = CANVAS_WIDTH + 'px';
     cameraWrapper.style.height = 750 + 'px';
 }
@@ -77,7 +76,7 @@ function renderCanvasAll() {
         ctx.drawImage(
             p.img,
             p.x,
-            p.y,
+            p.y ,
             p.img.width * p.scale,
             p.img.height * p.scale
         );
@@ -99,7 +98,7 @@ function renderCanvasAll() {
 
 /* ================== POSITION LOGIC (GIỐNG camera.js) ================== */
 function getFramePosition(index) {
-    if (datatype === 'portrait') {
+    if (datatype === 'vertical') {
         return {
             x: (CANVAS_WIDTH - cropW) / 2,
             y: 40 + index * gap
@@ -107,13 +106,12 @@ function getFramePosition(index) {
     }
 
     // square
-    if (index === 0) return { x: 25, y: 40 };
-    if (index === 1) return { x: 25 + gapX, y: 40 };
-    if (index === 2) return { x: 25 + gapX, y: 40 + gapY };
-    if (index === 3) return { x: 25, y: 40 + gapY };
+    if (index === 0) return { x: 25, y: 33 };
+    if (index === 1) return { x: 25 + gapX, y: 33 };
+    if (index === 2) return { x: 25 + gapX, y: 33 + gapY };
+    if (index === 3) return { x: 25, y: 33 + gapY };
 }
 
-/* ================== UPLOAD ================== */
 const fileInput = document.getElementById('fileInput');
 const uploadButton = document.getElementById('uploadButton');
 
@@ -134,8 +132,10 @@ fileInput.onchange = e => {
 
             const scale = Math.max(
                 cropW / img.width,
-                cropH / img.height
+                cropH / img.height 
             );
+
+           
 
             uploadedPhotos.push({
                 img,
@@ -143,7 +143,7 @@ fileInput.onchange = e => {
                 x: pos.x,
                 y: pos.y,
                 cropX: pos.x,
-                cropY: pos.y
+                cropY: pos.y ,
             });
 
             renderCanvasAll();
@@ -245,8 +245,6 @@ function finalizeToEdit() {
         startEditingSystem();
     }
 }
-
-/* ================== UTIL ================== */
 function getPos(e) {
     const rect = canvas.getBoundingClientRect();
     const cx = e.touches ? e.touches[0].clientX : e.clientX;
@@ -256,8 +254,6 @@ function getPos(e) {
         y: (cy - rect.top) * (CANVAS_HEIGHT / rect.height)
     };
 }
-
-/* ================== RESET ================== */
 document.getElementById('ResetBtn').onclick = () => {
     if (typeof stickersInCanvas !== 'undefined') {
         stickersInCanvas.length = 0;
